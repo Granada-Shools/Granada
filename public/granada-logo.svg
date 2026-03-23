@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" preserveAspectRatio="xMidYMid meet">
+  <!-- Blue circle background -->
+  <circle cx="100" cy="100" r="95" fill="#346988" stroke="none"/>
+  
+  <!-- GS Emblem in center - White and Bold -->
+  <text x="100" y="118" font-family="Georgia, serif" font-size="72" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">GS</text>
+</svg>

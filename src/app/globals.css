@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary:      #346988;
+  --primary-dark: #27536a;
+  --secondary:    #aac20c;
+  --white:        #ffffff;
+  --dark:         #0d0c0d;
+  --body-bg:      #f5f4f2;
+  --body-text:    #1c1b1c;
+  --muted:        #5a5a5a;
+  --border:       #dddbd8;
+  --gray:         #afaeaf;
+  --accent-warm:  #936c51;
+  --accent-green: #436b0d;
+  --accent-light: #ecfb94;
+  --accent-pink:  #d52978;
+  --accent-blue:  #0d88e4;
+}
+
+* { color-scheme: light; box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color:  var(--body-text);
+  background-color: var(--body-bg);
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── ANIMATIONS ────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.7s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideInDown 0.7s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.7s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.7s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out;
+}
+
+/* ── HOVER EFFECTS ────────────────────────────────────────────────────── */
+button, a {
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+.img-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-hover img {
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.img-hover:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.font-display { font-family: 'Cormorant Garamond', serif; }
+
+/* ── Section themes ──────────────────────────────────────────────────── */
+.section-light {
+  background: var(--white);
+  color: var(--body-text);
+}
+.section-cream {
+  background: var(--body-bg);
+  color: var(--body-text);
+}
+.section-blue {
+  background: var(--primary);
+  color: var(--white);
+}
+.section-blue-dark {
+  background: var(--primary-dark);
+  color: var(--white);
+}
+.section-dark {
+  background: var(--dark);
+  color: var(--white);
+}
+
+/* ── Typography helpers ──────────────────────────────────────────────── */
+.label-tag {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+  animation: fadeIn 0.8s ease-out;
+}
+.section-blue  .label-tag,
+.section-dark  .label-tag { color: var(--accent-light); }
+
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--primary);
+  animation: slideInUp 0.8s ease-out;
+}
+.section-blue  .section-heading,
+.section-dark  .section-heading { color: var(--white); }
+
+.section-heading em { font-style: italic; color: var(--secondary); }
+.section-blue  .section-heading em { color: var(--accent-light); }
+
+.body-text {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+.section-blue  .body-text { color: rgba(255,255,255,0.82); }
+.section-dark  .body-text { color: rgba(255,255,255,0.75); }
+
+.divider {
+  width: 50px; height: 2px;
+  background: var(--secondary);
+  margin: 1.25rem 0;
+  animation: slideInLeft 0.8s ease-out;
+}
+.section-blue .divider { background: var(--accent-light); }
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn-solid {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+.btn-solid:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(52, 105, 136, 0.3); }
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+.btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(52, 105, 136, 0.2); }
+
+/* On blue sections, invert button styles */
+.section-blue .btn-solid  { background: var(--white); border-color: var(--white); color: var(--primary); }
+.section-blue .btn-solid:hover { background: var(--accent-light); border-color: var(--accent-light); }
+.section-blue .btn-outline { border-color: var(--white); color: var(--white); }
+.section-blue .btn-outline:hover { background: var(--white); color: var(--primary); }
+
+/* Green accent button */
+.btn-green {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--secondary);
+  border: 1px solid var(--secondary);
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+.btn-green:hover { background: #96ac0a; border-color: #96ac0a; }
+
+/* ── Animations ──────────────────────────────────────────────────────── */
+@keyframes kenBurns { 0%{transform:scale(1)} 100%{transform:scale(1.06)} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+@keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+
+.animate-kenBurns { animation: kenBurns 10s ease-in-out infinite alternate; }
+
+/* ── Cards ───────────────────────────────────────────────────────────── */
+.img-hover img { transition: transform 0.55s ease; }
+.img-hover:hover img { transform: scale(1.05); }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+.nav-top-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-top-link:hover { color: var(--primary); }
+
+/* ── Misc ─────────────────────────────────────────────────────────────── */
+.section-blue a { color: inherit; }
+.pill {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid currentColor;
+}
+
+@media (max-width: 640px) { .nav-quick { display: none !important; } }
+
+/* ── Logo theming ───────────────────────────────────────────────────────
+ * Schools.svg uses fill="currentColor" with color="#346988" as the SVG-level
+ * default. When loaded via Next.js <Image> (renders as <img>), the page's CSS
+ * cannot cascade into the external SVG document.
+ *
+ * Usage with <Image>:
+ *   Light (white/cream) bg  → <Image className="logo-on-light" …/>
+ *   Dark (hero/footer) bg   → <Image className="logo-on-dark"  …/>
+ *
+ * Usage with inline <svg> (future):
+ *   Light bg → add class "svg-logo-light"
+ *   Dark bg  → add class "svg-logo-dark"
+ * ─────────────────────────────────────────────────────────────────────── */
+
+/* On light backgrounds: SVG defaults to brand-blue, no filter needed */
+.logo-on-light {
+  transition: filter 0.4s ease;
+}
+
+/* On dark backgrounds: invert to white */
+.logo-on-dark {
+  filter: brightness(0) invert(1);
+  transition: filter 0.4s ease;
+}
+
+/* For inline <svg> usage — color CSS property cascades into the SVG */
+.svg-logo-light { color: var(--primary); }
+.svg-logo-dark  { color: #ffffff; }

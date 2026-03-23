@@ -1,0 +1,21 @@
+:root {
+  --primary: #346988;
+  --secondary: #aac20c;
+  --white: #ffffff;
+  --dark: #0d0c0d;
+  --gray: #afaeaf;
+  --accent-warm: #936c51;
+  --accent-green: #436b0d;
+  --accent-light: #ecfb94;
+  --accent-pink: #d52978;
+  --accent-blue: #0d88e4;
+}
+
+* {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--dark);
+  color: var(--white);
+}
