@@ -109,26 +109,26 @@ function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
   useEffect(()=>{if(open)setActive(0);},[open]);
   const cur=NAV_ITEMS[active];
   const sr=search.trim()?NAV_ITEMS.flatMap(n=>[{label:n.label,href:n.href},...(n.children||[])].filter(c=>c.label.toLowerCase().includes(search.toLowerCase()))):[];
-  const P="#346988"; const S="#aac20c";
+  const P="#213558"; const S="#aac20c";
   return(<>
-    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:199,background:"rgba(52,105,136,0.45)",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.4s",backdropFilter:open?"blur(3px)":"none"}}/>
-    <div style={{position:"fixed",top:0,right:0,bottom:0,zIndex:200,width:"100%",maxWidth:"min(100vw,900px)",display:"flex",flexDirection:"column",background:"#346988",transform:open?"translateX(0)":"translateX(100%)",transition:"transform 0.5s cubic-bezier(0.77,0,0.175,1)",boxShadow:"-8px 0 60px rgba(0,0,0,0.3)",fontSize:"clamp(0.7rem,1.5vw,1rem)"}}>
+    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:199,background:"rgba(33,53,88,0.45)",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.4s",backdropFilter:open?"blur(3px)":"none"}}/>
+    <div style={{position:"fixed",top:0,right:0,bottom:0,zIndex:200,width:"100%",maxWidth:"min(100vw,900px)",display:"flex",flexDirection:"column",background:"#213558",transform:open?"translateX(0)":"translateX(100%)",transition:"transform 0.5s cubic-bezier(0.77,0,0.175,1)",boxShadow:"-8px 0 60px rgba(0,0,0,0.3)",fontSize:"clamp(0.7rem,1.5vw,1rem)"}}>
       {/* Top bar */}
       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"clamp(0.8rem,2vw,1.1rem) clamp(1.5rem,3vw,2.5rem)",borderBottom:"1px solid rgba(255,255,255,0.1)",flexShrink:0,gap:"clamp(0.8rem,2vw,1.5rem)",background:"rgba(0,0,0,0.2)",flexWrap:"wrap"}}>
         <div style={{display:"flex",gap:"clamp(0.5rem,1.5vw,1.5rem)",alignItems:"center",flexWrap:"wrap",flex:1,minWidth:0}}>
-          {[{label:"Parents",href:"/granada-international#contact"},{label:"Enquire",href:"/granada-international#admissions"},{label:"Contact us",href:"/granada-international#contact"}].map(l=>(
+          {[{label:"Parents",href:"/granada-international#contact"},{label:"Enquire",href:"/granada-international/contact"},{label:"Contact us",href:"/granada-international/contact"}].map(l=>(
             <a key={l.label} href={l.href} onClick={onClose} style={{color:"#fff",textDecoration:"none",fontSize:"clamp(0.6rem,1.2vw,0.7rem)",letterSpacing:"0.08em",textTransform:"uppercase",fontWeight:500,transition:"color 0.2s",whiteSpace:"nowrap"}}
               onMouseEnter={e=>(e.currentTarget.style.color=S)} onMouseLeave={e=>(e.currentTarget.style.color="#fff")}>{l.label}</a>
           ))}
         </div>
         <div style={{flex:1,maxWidth:280,position:"relative"}}>
           <input type="text" placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)} onFocus={()=>setSf(true)} onBlur={()=>setTimeout(()=>setSf(false),150)}
-            style={{width:"100%",background:"rgba(255,255,255,0.1)",border:`1px solid ${sf?"#fff":"rgba(255,255,255,0.3)"}`,color:"#fff",padding:"0.45rem 2rem 0.45rem 0.8rem",fontSize:"0.78rem",outline:"none",transition:"border-color 0.2s",fontFamily:"inherit"}}/>
-          <span style={{position:"absolute",right:"0.7rem",top:"50%",transform:"translateY(-50%)",color:"rgba(255,255,255,0.6)",fontSize:"0.85rem",pointerEvents:"none"}}>⌕</span>
+            style={{width:"100%",background:"rgba(255,255,255,0.1)",border:`1px solid ${sf?"#fff":"rgba(255,255,255,0.3)"}`,color:"#fff",padding:"0.45rem 2rem 0.45rem 0.8rem",fontSize:"clamp(0.72rem,1vw,0.8rem)",outline:"none",transition:"border-color 0.2s",fontFamily:"inherit"}}/>
+          <span style={{position:"absolute",right:"0.7rem",top:"50%",transform:"translateY(-50%)",color:"rgba(255,255,255,0.6)",fontSize:"clamp(0.78rem,1.1vw,0.88rem)",pointerEvents:"none"}}>⌕</span>
           {search.trim()&&sr.length>0&&(
             <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:"#fff",border:`1px solid ${P}30`,zIndex:10,maxHeight:240,overflowY:"auto",boxShadow:"0 4px 20px rgba(0,0,0,0.1)"}}>
               {sr.map((r,i)=>(
-                <a key={i} href={r.href} onClick={()=>{setSearch("");onClose();}} style={{display:"block",padding:"0.6rem 1rem",color:"#1c1b1c",textDecoration:"none",fontSize:"0.8rem",borderBottom:"1px solid #f0eee9",transition:"background 0.15s"}}
+                <a key={i} href={r.href} onClick={()=>{setSearch("");onClose();}} style={{display:"block",padding:"0.6rem 1rem",color:"#1c1b1c",textDecoration:"none",fontSize:"clamp(0.75rem,1.02vw,0.82rem)",borderBottom:"1px solid #f0eee9",transition:"background 0.15s"}}
                   onMouseEnter={e=>(e.currentTarget.style.background=`${P}10`)} onMouseLeave={e=>(e.currentTarget.style.background="transparent")}>{r.label}</a>
               ))}
             </div>
@@ -154,7 +154,7 @@ function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
         {/* Col 2 & 3 */}
         <div style={{flex:1,display:"flex",overflow:"hidden"}}>
           {/* Col 2 — children links */}
-          <div style={{flex:1,display:"flex",flexDirection:"column",borderRight:"1px solid rgba(255,255,255,0.1)",overflow:"hidden",background:"#346988"}}>
+          <div style={{flex:1,display:"flex",flexDirection:"column",borderRight:"1px solid rgba(255,255,255,0.1)",overflow:"hidden",background:"#213558"}}>
             <div style={{padding:"clamp(1rem,2vw,1.5rem) clamp(1rem,2vw,1.5rem) 0",flexShrink:0,borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
               <p style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",letterSpacing:"0.22em",textTransform:"uppercase",color:"#fff",fontWeight:700}}>{cur.label}</p>
             </div>
@@ -169,22 +169,22 @@ function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
                 ))}
               </div>
               <div style={{display:"flex",gap:"clamp(0.4rem,0.8vw,0.6rem)",marginTop:"clamp(1rem,1.5vw,1.5rem)",flexWrap:"wrap"}}>
-                <a href="/granada-international#admissions" onClick={onClose} className="btn-solid" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Enquire</a>
-                <a href="/granada-international#admissions" onClick={onClose} className="btn-outline" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Apply Now</a>
+                <a href="/granada-international/contact" onClick={onClose} className="btn-solid" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Enquire</a>
+                <a href="/granada-international/contact" onClick={onClose} className="btn-outline" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Apply Now</a>
               </div>
             </div>
           </div>
           {/* Col 3 — image panel */}
-          <div style={{width:"clamp(150px,20vw,320px)",flexShrink:0,position:"relative",overflow:"hidden",background:"#346988",display:"none"}}>
+          <div style={{width:"clamp(150px,20vw,320px)",flexShrink:0,position:"relative",overflow:"hidden",background:"#213558",display:"none"}}>
             {NAV_ITEMS.map((item,i)=>(
               <div key={i} style={{position:"absolute",inset:0,backgroundImage:`url(${item.image})`,backgroundSize:"cover",backgroundPosition:"center",opacity:active===i?1:0,transition:"opacity 0.5s ease"}}/>
             ))}
-            <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(52,105,136,0.8) 0%,rgba(52,105,136,0.2) 60%)"}}/>
+            <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(33,53,88,0.8) 0%,rgba(33,53,88,0.2) 60%)"}}/>
             <div style={{position:"absolute",bottom:"clamp(0.8rem,1.5vw,1.25rem)",left:"clamp(0.8rem,1.5vw,1.25rem)",right:"clamp(0.8rem,1.5vw,1.25rem)",zIndex:2}}>
-              <p style={{fontFamily:"'Cormorant Garamond',serif",color:"rgba(255,255,255,0.9)",fontSize:"clamp(0.7rem,1.2vw,0.85rem)",fontStyle:"italic"}}>{cur.imageCaption}</p>
+              <p style={{fontFamily:"'Euclid Circular A',sans-serif",color:"rgba(255,255,255,0.9)",fontSize:"clamp(0.7rem,1.2vw,0.85rem)"}}>{cur.imageCaption}</p>
             </div>
           </div>
-          <style>{`@media(min-width:768px){div[style*="background:#346988"]{display:block!important}}`}</style>
+          <style>{`@media(min-width:768px){div[style*="background:#213558"]{display:block!important}}`}</style>
         </div>
       </div>
       {/* Footer */}
@@ -211,19 +211,19 @@ function Navbar(){
     <header style={{position:"fixed",top:0,left:0,right:0,zIndex:100,transition:"all 0.4s ease",background:scrolled?"rgba(255,255,255,0.97)":"transparent",backdropFilter:scrolled?"blur(10px)":"none",boxShadow:scrolled?"0 1px 0 #e8e6e3":"none",padding:scrolled?"0.7rem 0":"clamp(0.8rem,2vw,1.2rem) 0"}}>
       <div style={{maxWidth:1280,margin:"0 auto",padding:"0 clamp(1rem,2vw,2rem)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"clamp(0.8rem,1.5vw,1rem)"}}>
         <a href="/" style={{textDecoration:"none",display:"flex",alignItems:"center",minWidth:0}}>
-          <Image src={scrolled ? "/School2.svg" : "/School2-dark.svg"} alt="Granada International" width={190} height={90} style={{height:"auto",width:"clamp(120px,18vw,250px)"}} priority/>
+          <Image src={scrolled ? "/g-international.svg" : "/g-international-dark.svg"} alt="Granada International" width={110} height={44} style={{height:"auto",width:"clamp(50px,8vw,110px)"}} priority/>
         </a>
         <div style={{display:"flex",alignItems:"center",gap:"clamp(1rem,2vw,1.5rem)",flexWrap:"wrap",justifyContent:"flex-end",flex:1}}>
           <div style={{display:"none",gap:"clamp(0.75rem,1.5vw,1.25rem)",alignItems:"center"}} className="nav-quick">
-            {[{l:"Parents",h:"/granada-international#contact"},{l:"Enquire",h:"/granada-international#admissions"}].map(({l,h})=>(
+            {[{l:"Parents",h:"/granada-international#contact"},{l:"Enquire",h:"/granada-international/contact"}].map(({l,h})=>(
               <a key={l} href={h} style={{color:scrolled?"var(--muted)":"rgba(255,255,255,0.85)",textDecoration:"none",fontSize:"clamp(0.6rem,1.2vw,0.68rem)",letterSpacing:"0.1em",textTransform:"uppercase",fontWeight:500,transition:"color 0.2s",whiteSpace:"nowrap"}}
                 onMouseEnter={e=>(e.currentTarget.style.color="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.color=scrolled?"var(--muted)":"rgba(255,255,255,0.85)")}>{l}</a>
             ))}
             <a href="/granada-international#admissions" className="btn-green" style={{fontSize:"clamp(0.6rem,1.2vw,0.62rem)",padding:"clamp(0.4rem,0.8vw,0.5rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Apply Now</a>
           </div>
           <button onClick={()=>setOpen(true)} aria-label="Open menu"
-            style={{background:"none",border:`1px solid ${scrolled?"rgba(52,105,136,0.35)":"rgba(255,255,255,0.5)"}`,cursor:"pointer",display:"flex",flexDirection:"column",gap:5,padding:"0.5rem 0.6rem",transition:"border-color 0.3s",flexShrink:0}}
-            onMouseEnter={e=>(e.currentTarget.style.borderColor="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.borderColor=scrolled?"rgba(52,105,136,0.35)":"rgba(255,255,255,0.5)")}>
+            style={{background:"none",border:`1px solid ${scrolled?"rgba(33,53,88,0.35)":"rgba(255,255,255,0.5)"}`,cursor:"pointer",display:"flex",flexDirection:"column",gap:5,padding:"0.5rem 0.6rem",transition:"border-color 0.3s",flexShrink:0}}
+            onMouseEnter={e=>(e.currentTarget.style.borderColor="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.borderColor=scrolled?"rgba(33,53,88,0.35)":"rgba(255,255,255,0.5)")}>
             <span style={{width:21,height:1.5,background:scrolled?"var(--primary)":"#fff",display:"block",transition:"background 0.4s"}}/>
             <span style={{width:21,height:1.5,background:scrolled?"var(--primary)":"#fff",display:"block",transition:"background 0.4s"}}/>
             <span style={{width:13,height:1.5,background:"var(--secondary)",display:"block"}}/>
@@ -260,38 +260,40 @@ function Hero(){
         <div key={i} style={{position:"absolute",inset:0,backgroundImage:`url(${s.bg})`,backgroundSize:"cover",backgroundPosition:"center",opacity:i===active?1:0,transition:"opacity 1.2s ease",animation:i===active?"kenBurns 10s ease-in-out infinite alternate":"none"}}/>
       ))}
       {/* Gradient overlays */}
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(13,12,13,0.78) 30%,rgba(52,105,136,0.45) 100%)"}}/>
+      <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(13,12,13,0.78) 30%,rgba(33,53,88,0.45) 100%)"}}/>
       <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(13,12,13,0.55) 0%,transparent 55%)"}}/>
       {/* Decorative corner accent */}
       <div style={{position:"absolute",top:0,right:0,width:"clamp(200px,30vw,400px)",height:"clamp(200px,30vw,400px)",background:"radial-gradient(circle at top right,rgba(170,194,12,0.15) 0%,transparent 70%)",pointerEvents:"none"}}/>
 
       <div style={{position:"relative",zIndex:5,height:"100%",maxWidth:1280,margin:"0 auto",padding:"0 clamp(1rem,2vw,2rem)",display:"flex",flexDirection:"column",justifyContent:"center",paddingTop:"clamp(60px,10vw,80px)"}}>
-        <div style={{maxWidth:"clamp(280px,90vw,700px)",opacity:loaded?1:0,transition:"opacity 1s ease 0.2s"}}>
+        <div style={{display:"flex",alignItems:"flex-end",gap:"clamp(2rem,4vw,4rem)",flexWrap:"wrap",opacity:loaded?1:0,transition:"opacity 1s ease 0.2s"}}>
+          <div style={{flex:"1 1 auto",minWidth:"clamp(280px,50vw,480px)"}}>
           {/* Badge */}
           <div style={{display:"inline-flex",alignItems:"center",gap:"0.6rem",background:"rgba(170,194,12,0.15)",border:"1px solid rgba(170,194,12,0.4)",padding:"0.4rem 1rem",marginBottom:"clamp(1rem,1.8vw,1.5rem)"}}>
             <span style={{width:6,height:6,background:"var(--secondary)",borderRadius:"50%",flexShrink:0}}/>
             <span style={{color:"var(--secondary)",fontSize:"clamp(0.55rem,0.9vw,0.65rem)",letterSpacing:"0.2em",textTransform:"uppercase",fontWeight:700}}>Pearson Edexcel · British Curriculum</span>
           </div>
           <h1 className="font-display" style={{fontSize:"clamp(2.2rem,7vw,5.8rem)",fontWeight:600,lineHeight:1.02,color:"#fff",marginBottom:"0.3rem",opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.3s"}}>Granada</h1>
-          <h1 className="font-display" style={{fontSize:"clamp(2.2rem,7vw,5.8rem)",fontWeight:300,fontStyle:"italic",lineHeight:1.02,color:"var(--secondary)",marginBottom:"clamp(1.2rem,2vw,1.8rem)",opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.4s"}}>International</h1>
+          <h1 className="font-display" style={{fontSize:"clamp(2.2rem,7vw,5.8rem)",fontWeight:300,lineHeight:1.02,color:"var(--secondary)",marginBottom:"clamp(1.2rem,2vw,1.8rem)",opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.4s"}}>International</h1>
           <div style={{width:"clamp(35px,5vw,50px)",height:2,background:"var(--secondary)",marginBottom:"clamp(1rem,1.5vw,1.5rem)",opacity:loaded?1:0,transition:"opacity 1s ease 0.5s"}}/>
-          <p style={{fontSize:"clamp(0.85rem,1.5vw,1.05rem)",fontWeight:300,lineHeight:1.8,color:"rgba(255,255,255,0.88)",maxWidth:500,marginBottom:"clamp(1.8rem,2.5vw,2.5rem)",opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.5s"}}>
+          <p style={{fontSize:"clamp(0.85rem,1.5vw,1.05rem)",fontWeight:300,lineHeight:1.8,color:"rgba(255,255,255,0.88)",maxWidth:500,opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.5s"}}>
             Opening doors to globally recognised qualifications along Kenya's beautiful Vipingo coast.
           </p>
-          <div style={{display:"flex",gap:"clamp(0.6rem,1.5vw,0.9rem)",flexWrap:"wrap",opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.6s"}}>
-            <a href="/granada-international/about" className="btn-green" style={{fontSize:"clamp(0.6rem,1vw,0.68rem)",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)"}}>Discover More</a>
-            <a href="/granada-international#admissions" style={{display:"inline-block",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)",background:"transparent",border:"1px solid rgba(255,255,255,0.6)",color:"#fff",textTransform:"uppercase",letterSpacing:"0.14em",fontSize:"clamp(0.6rem,1vw,0.68rem)",fontWeight:600,textDecoration:"none",transition:"all 0.3s"}}
+          </div>
+          <div style={{display:"flex",flexDirection:"column",gap:"clamp(0.6rem,1.5vw,0.9rem)",flexShrink:0,opacity:loaded?1:0,transform:loaded?"none":"translateY(20px)",transition:"all 0.9s ease 0.6s"}}>
+            <a href="/granada-international/about" className="btn-green" style={{fontSize:"clamp(0.6rem,1vw,0.68rem)",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)",textAlign:"center",whiteSpace:"nowrap"}}>Discover More</a>
+            <a href="/granada-international/contact" style={{display:"inline-block",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)",background:"transparent",border:"1px solid rgba(255,255,255,0.6)",color:"#fff",textTransform:"uppercase",letterSpacing:"0.14em",fontSize:"clamp(0.6rem,1vw,0.68rem)",fontWeight:600,textDecoration:"none",transition:"all 0.3s",textAlign:"center",whiteSpace:"nowrap"}}
               onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.15)";}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>
               Enquire Today
             </a>
           </div>
         </div>
         {/* Slide stats strip */}
-        <div style={{position:"absolute",bottom:0,right:0,width:"clamp(220px,30vw,360px)",background:"rgba(52,105,136,0.82)",backdropFilter:"blur(8px)",padding:"clamp(1.2rem,2vw,1.8rem)",display:"none"}} className="hero-stats">
+        <div style={{position:"absolute",bottom:0,right:0,width:"clamp(220px,30vw,360px)",background:"rgba(33,53,88,0.82)",backdropFilter:"blur(8px)",padding:"clamp(1.2rem,2vw,1.8rem)",display:"none"}} className="hero-stats">
           {[{n:"100%",l:"British Edexcel"},{n:"K–13",l:"Full School Range"},{n:"♦",l:"Vipingo Coast"}].map((s,i)=>(
             <div key={i} style={{display:"flex",alignItems:"center",gap:"1rem",paddingBottom:i<2?"0.9rem":"0",borderBottom:i<2?"1px solid rgba(255,255,255,0.15)":"none",marginBottom:i<2?"0.9rem":"0"}}>
-              <span className="font-display" style={{fontSize:"1.6rem",fontWeight:600,color:"var(--secondary)",lineHeight:1,minWidth:50}}>{s.n}</span>
-              <span style={{color:"rgba(255,255,255,0.82)",fontSize:"0.75rem",letterSpacing:"0.1em",textTransform:"uppercase",fontWeight:500}}>{s.l}</span>
+              <span className="font-display" style={{fontSize:"clamp(1.4rem,2.3vw,1.65rem)",fontWeight:600,color:"var(--secondary)",lineHeight:1,minWidth:50}}>{s.n}</span>
+              <span style={{color:"rgba(255,255,255,0.82)",fontSize:"clamp(0.68rem,0.95vw,0.78rem)",letterSpacing:"0.1em",textTransform:"uppercase",fontWeight:500}}>{s.l}</span>
             </div>
           ))}
         </div>
@@ -314,7 +316,7 @@ function TaglineStrip(){
       <div style={{maxWidth:1280,margin:"0 auto",display:"flex",justifyContent:"center",gap:"clamp(1.5rem,3vw,2.5rem)",flexWrap:"wrap",alignItems:"center"}}>
         {["Forward Thinking","Inspiring Excellence","Shaping the Future"].map((t,i)=>(
           <span key={i} style={{display:"flex",alignItems:"center",gap:"clamp(0.6rem,1.2vw,1rem)"}}>
-            <span className="font-display" style={{fontSize:"clamp(0.8rem,1.5vw,1rem)",fontStyle:"italic",fontWeight:400,color:"#fff",letterSpacing:"0.03em",whiteSpace:"nowrap"}}>{t}</span>
+            <span className="font-display" style={{fontSize:"clamp(0.8rem,1.5vw,1rem)",fontWeight:400,color:"#fff",letterSpacing:"0.03em",whiteSpace:"nowrap"}}>{t}</span>
             {i<2&&<span style={{width:4,height:4,borderRadius:"50%",background:"var(--secondary)",flexShrink:0}}/>}
           </span>
         ))}
@@ -355,7 +357,7 @@ function Welcome(){
           ].map((img,i)=>(
             <div key={i} className="img-hover" style={{gridColumn:img.col,gridRow:img.row,overflow:"hidden",position:"relative"}}>
               <img src={img.src} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-              <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(52,105,136,0.3),transparent 60%)"}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(33,53,88,0.3),transparent 60%)"}}/>
             </div>
           ))}
           {/* Floating badge */}
@@ -392,7 +394,7 @@ function EdexcelHighlight(){
         <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:"1px",background:"#dddbd8"}} className="stages-grid">
           {stages.map((s,i)=>(
             <div key={i} style={{background:"#fff",padding:"clamp(1.2rem,1.8vw,2rem) clamp(1rem,1.2vw,1.4rem)",borderTop:`3px solid ${s.color}`,position:"relative",overflow:"hidden",opacity:vis?1:0,transform:vis?"none":"translateY(32px)",transition:`all 0.9s ease ${i*0.1}s`,cursor:"default"}}
-              onMouseEnter={e=>{e.currentTarget.style.background="#f0f7fb";e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 8px 24px rgba(52,105,136,0.12)";}}
+              onMouseEnter={e=>{e.currentTarget.style.background="#f0f7fb";e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 8px 24px rgba(33,53,88,0.12)";}}
               onMouseLeave={e=>{e.currentTarget.style.background="#fff";e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="none";}}>
               <div style={{position:"absolute",bottom:-20,right:-10,width:60,height:60,borderRadius:"50%",background:s.color,opacity:0.08}}/>
               <span style={{fontSize:"clamp(1.2rem,2vw,1.6rem)",display:"block",marginBottom:"0.75rem"}}>{s.icon}</span>
@@ -431,7 +433,7 @@ function Pillars(){
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr",gap:"clamp(1rem,1.5vw,1.25rem)",minHeight:0}} className="pillars-grid">
           {items.map((item,i)=>(
-            <div key={i} className="img-hover" style={{position:"relative",height:"clamp(280px,50vw,460px)",overflow:"hidden",opacity:vis?1:0,transform:vis?"none":"translateY(40px)",transition:`all 0.9s ease ${i*0.12}s`}}>
+            <div key={i} className="img-hover" style={{position:"relative",minHeight:"clamp(280px,50vw,460px)",height:"100%",overflow:"hidden",opacity:vis?1:0,transform:vis?"none":"translateY(40px)",transition:`all 0.9s ease ${i*0.12}s`}}>
               <img src={item.img} alt={item.title} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
               <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(13,12,13,0.88) 0%,rgba(13,12,13,0.15) 65%,transparent 100%)"}}/>
               <div style={{position:"absolute",top:"clamp(0.8rem,1.5vw,1.1rem)",left:"clamp(0.8rem,1.5vw,1.1rem)"}}>
@@ -455,10 +457,10 @@ function QuoteBanner(){
   return(
     <section style={{position:"relative",overflow:"hidden",padding:"clamp(3rem,5vw,5.5rem) clamp(1rem,2vw,2rem)"}}>
       <div style={{position:"absolute",inset:0,backgroundImage:"url(/dorm.jpeg)",backgroundSize:"cover",backgroundPosition:"center",backgroundAttachment:"fixed"}}/>
-      <div style={{position:"absolute",inset:0,background:"rgba(52,105,136,0.88)"}}/>
+      <div style={{position:"absolute",inset:0,background:"rgba(33,53,88,0.88)"}}/>
       <div style={{position:"relative",zIndex:2,maxWidth:820,margin:"0 auto",textAlign:"center"}}>
         <p style={{color:"var(--accent-light)",textTransform:"uppercase",letterSpacing:"0.3em",fontSize:"clamp(0.55rem,0.8vw,0.62rem)",fontWeight:700,marginBottom:"clamp(1.2rem,1.75vw,1.75rem)"}}>Our Mission</p>
-        <blockquote className="font-display" style={{fontSize:"clamp(1.2rem,3.5vw,2.6rem)",fontStyle:"italic",fontWeight:400,color:"#fff",lineHeight:1.45,marginBottom:"clamp(1.5rem,2.25vw,2.25rem)"}}>
+        <blockquote className="font-display" style={{fontSize:"clamp(1.2rem,3.5vw,2.6rem)",fontWeight:400,color:"#fff",lineHeight:1.45,marginBottom:"clamp(1.5rem,2.25vw,2.25rem)"}}>
           "We are committed to inspiring excellence and preparing learners for a successful future — today, tomorrow, and beyond."
         </blockquote>
         <div style={{width:"clamp(32px,4vw,44px)",height:2,background:"var(--secondary)",margin:"0 auto clamp(1.2rem,1.75vw,1.75rem)"}}/>
@@ -491,7 +493,7 @@ function ValuesStrip(){
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:"clamp(0.6rem,1vw,0.85rem)"}} className="values-strip">
           {values.map((v,i)=>(
-            <div key={i} style={{position:"relative",overflow:"hidden",height:"clamp(180px,28vw,260px)",cursor:"default",opacity:vis?1:0,transform:vis?"none":"translateY(32px)",transition:`all 0.9s ease ${i*0.1}s`}}
+            <div key={i} style={{position:"relative",overflow:"hidden",minHeight:"clamp(180px,28vw,260px)",height:"100%",cursor:"default",opacity:vis?1:0,transform:vis?"none":"translateY(32px)",transition:`all 0.9s ease ${i*0.1}s`}}
               onMouseEnter={e=>{const overlay=e.currentTarget.querySelector(".val-overlay") as HTMLElement;if(overlay)overlay.style.opacity="1";}}
               onMouseLeave={e=>{const overlay=e.currentTarget.querySelector(".val-overlay") as HTMLElement;if(overlay)overlay.style.opacity="0";}}>
               <div style={{position:"absolute",inset:0,background:`linear-gradient(160deg,${v.color} 0%,${v.color}cc 100%)`}}/>
@@ -523,10 +525,11 @@ function AdmissionsCTA(){
         <h2 className="section-heading">Begin Your <em>International Journey</em></h2>
         <p className="body-text" style={{maxWidth:520,margin:"clamp(0.8rem,1.5vw,1.25rem) auto clamp(1.5rem,2.5vw,2.5rem)",fontSize:"clamp(0.9rem,1vw,1.05rem)"}}>Join a community of internationally-minded learners on Kenya's breathtaking Vipingo coast — where British excellence meets African warmth.</p>
         <div style={{display:"flex",justifyContent:"center",gap:"clamp(0.6rem,1.2vw,1rem)",flexWrap:"wrap"}}>
-          <a href="/granada-international#contact" className="btn-solid" style={{fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}>Enquire Now</a>
-          <a href="/granada-international#contact" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
+          <a href="/granada-international/contact" className="btn-solid" style={{fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}>Enquire Now</a>
+          <a href="/granada-international/contact?type=visit" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
             onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.15)";}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>Book a Visit</a>
-          <a href="/granada-international#contact" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
+
+          <a href="/granada-international/contact" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
             onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.15)";}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>Apply</a>
         </div>
       </div>
@@ -537,12 +540,12 @@ function AdmissionsCTA(){
 /* ── FOOTER ────────────────────────────────────────────────────────────────── */
 function Footer(){
   return(
-    <footer id="contact" style={{background:"var(--primary-dark)",color:"#fff",padding:"clamp(3rem,4vw,5rem) clamp(1rem,2vw,2rem) clamp(1.2rem,2vw,2rem)"}}>
+    <footer id="contact" style={{background:"var(--primary)",color:"#fff",padding:"clamp(3rem,4vw,5rem) clamp(1rem,2vw,2rem) clamp(1.2rem,2vw,2rem)"}}>
       <div style={{maxWidth:1280,margin:"0 auto"}}>
         <div style={{display:"grid",gridTemplateColumns:"1fr",gap:"clamp(2rem,3vw,4rem)",marginBottom:"clamp(2rem,3vw,3.5rem)"}} className="int-footer-cols">
           <div>
             <a href="/granada-international" style={{textDecoration:"none"}}>
-              <Image src="/School2-dark.svg" alt="Granada International" width={190} height={90} style={{width:"clamp(140px,16vw,250px)",height:"auto",marginBottom:"0.75rem"}}/>
+              <Image src="/g-international-dark.svg" alt="Granada International" width={190} height={90} style={{width:"clamp(140px,16vw,250px)",height:"auto",marginBottom:"0.75rem"}}/>
             </a>
             <p style={{color:"rgba(255,255,255,0.65)",fontSize:"clamp(0.75rem,0.9vw,0.82rem)",lineHeight:1.8,maxWidth:260,marginTop:"clamp(0.8rem,1.2vw,1.25rem)"}}>Forward Thinking. Inspiring Excellence. Shaping the Future.</p>
             <div style={{display:"flex",gap:"clamp(0.4rem,0.8vw,0.65rem)",marginTop:"clamp(0.9rem,1.2vw,1.4rem)"}}>

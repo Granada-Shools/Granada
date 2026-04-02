@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Georgia", "Garamond", "serif"],
-        sans: ["system-ui", "-apple-system", "sans-serif"],
+        serif: ["Euclid Circular A", "sans-serif"],
+        sans: ["Euclid Circular A", "system-ui", "-apple-system", "sans-serif"],
       },
       colors: {
-        primary: "#346988",
+        primary: "#213558",
         secondary: "#aac20c",
         dark: "#0d0c0d",
         gray: "#afaeaf",

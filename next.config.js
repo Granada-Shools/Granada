@@ -1,2 +1,8 @@
-const nextConfig = require('./next.config.ts').default || require('./next.config.ts');
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  devIndicators: false,
+  poweredByHeader: false,
+};
+
 module.exports = nextConfig;

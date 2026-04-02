@@ -104,26 +104,26 @@ function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
   useEffect(()=>{if(open)setActive(0);},[open]);
   const cur=NAV_ITEMS[active];
   const sr=search.trim()?NAV_ITEMS.flatMap(n=>[{label:n.label,href:n.href},...(n.children||[])].filter(c=>c.label.toLowerCase().includes(search.toLowerCase()))):[];
-  const P="#346988"; const S="#aac20c";
+  const P="#213558"; const S="#aac20c";
   return(<>
-    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:199,background:"rgba(52,105,136,0.45)",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.4s",backdropFilter:open?"blur(3px)":"none"}}/>
-    <div style={{position:"fixed",top:0,right:0,bottom:0,zIndex:200,width:"100%",maxWidth:"min(100vw,900px)",display:"flex",flexDirection:"column",background:"#346988",transform:open?"translateX(0)":"translateX(100%)",transition:"transform 0.5s cubic-bezier(0.77,0,0.175,1)",boxShadow:"-8px 0 60px rgba(0,0,0,0.3)",fontSize:"clamp(0.7rem,1.5vw,1rem)"}}>
+    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:199,background:"rgba(33,53,88,0.45)",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.4s",backdropFilter:open?"blur(3px)":"none"}}/>
+    <div style={{position:"fixed",top:0,right:0,bottom:0,zIndex:200,width:"100%",maxWidth:"min(100vw,900px)",display:"flex",flexDirection:"column",background:"#213558",transform:open?"translateX(0)":"translateX(100%)",transition:"transform 0.5s cubic-bezier(0.77,0,0.175,1)",boxShadow:"-8px 0 60px rgba(0,0,0,0.3)",fontSize:"clamp(0.7rem,1.5vw,1rem)"}}>
       {/* Top bar */}
       <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"clamp(0.8rem,2vw,1.1rem) clamp(1.5rem,3vw,2.5rem)",borderBottom:"1px solid rgba(255,255,255,0.1)",flexShrink:0,gap:"clamp(0.8rem,2vw,1.5rem)",background:"rgba(0,0,0,0.2)",flexWrap:"wrap"}}>
         <div style={{display:"flex",gap:"clamp(0.5rem,1.5vw,1.5rem)",alignItems:"center",flexWrap:"wrap",flex:1,minWidth:0}}>
-          {[{label:"Parents",href:"/granada-school#contact"},{label:"Enquire",href:"/granada-school/admissions"},{label:"Contact us",href:"/granada-school#contact"}].map(l=>(
+          {[{label:"Parents",href:"/granada-school#contact"},{label:"Enquire",href:"/granada-school/contact"},{label:"Contact us",href:"/granada-school/contact"}].map(l=>(
             <a key={l.label} href={l.href} onClick={onClose} style={{color:"#fff",textDecoration:"none",fontSize:"clamp(0.6rem,1.2vw,0.7rem)",letterSpacing:"0.08em",textTransform:"uppercase",fontWeight:500,transition:"color 0.2s",whiteSpace:"nowrap"}}
               onMouseEnter={e=>(e.currentTarget.style.color=S)} onMouseLeave={e=>(e.currentTarget.style.color="#fff")}>{l.label}</a>
           ))}
         </div>
         <div style={{flex:1,maxWidth:280,position:"relative"}}>
           <input type="text" placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)} onFocus={()=>setSf(true)} onBlur={()=>setTimeout(()=>setSf(false),150)}
-            style={{width:"100%",background:"rgba(255,255,255,0.1)",border:`1px solid ${sf?"#fff":"rgba(255,255,255,0.3)"}`,color:"#fff",padding:"0.45rem 2rem 0.45rem 0.8rem",fontSize:"0.78rem",outline:"none",transition:"border-color 0.2s",fontFamily:"inherit"}}/>
-          <span style={{position:"absolute",right:"0.7rem",top:"50%",transform:"translateY(-50%)",color:"rgba(255,255,255,0.6)",fontSize:"0.85rem",pointerEvents:"none"}}>⌕</span>
+            style={{width:"100%",background:"rgba(255,255,255,0.1)",border:`1px solid ${sf?"#fff":"rgba(255,255,255,0.3)"}`,color:"#fff",padding:"0.45rem 2rem 0.45rem 0.8rem",fontSize:"clamp(0.72rem,1vw,0.8rem)",outline:"none",transition:"border-color 0.2s",fontFamily:"inherit"}}/>
+          <span style={{position:"absolute",right:"0.7rem",top:"50%",transform:"translateY(-50%)",color:"rgba(255,255,255,0.6)",fontSize:"clamp(0.78rem,1.1vw,0.88rem)",pointerEvents:"none"}}>⌕</span>
           {search.trim()&&sr.length>0&&(
             <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:"#fff",border:`1px solid ${P}30`,zIndex:10,maxHeight:240,overflowY:"auto",boxShadow:"0 4px 20px rgba(0,0,0,0.1)"}}>
               {sr.map((r,i)=>(
-                <a key={i} href={r.href} onClick={()=>{setSearch("");onClose();}} style={{display:"block",padding:"0.6rem 1rem",color:"#1c1b1c",textDecoration:"none",fontSize:"0.8rem",borderBottom:"1px solid #f0eee9",transition:"background 0.15s"}}
+                <a key={i} href={r.href} onClick={()=>{setSearch("");onClose();}} style={{display:"block",padding:"0.6rem 1rem",color:"#1c1b1c",textDecoration:"none",fontSize:"clamp(0.75rem,1.02vw,0.82rem)",borderBottom:"1px solid #f0eee9",transition:"background 0.15s"}}
                   onMouseEnter={e=>(e.currentTarget.style.background=`${P}10`)} onMouseLeave={e=>(e.currentTarget.style.background="transparent")}>{r.label}</a>
               ))}
             </div>
@@ -149,7 +149,7 @@ function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
         {/* Middle & Right panel - 3 column layout */}
         <div style={{flex:1,display:"flex",overflow:"hidden"}}>
           {/* Middle column - Children links */}
-          <div style={{flex:1,display:"flex",flexDirection:"column",borderRight:"1px solid rgba(255,255,255,0.1)",overflow:"hidden",background:"#346988"}}>
+          <div style={{flex:1,display:"flex",flexDirection:"column",borderRight:"1px solid rgba(255,255,255,0.1)",overflow:"hidden",background:"#213558"}}>
             <div style={{padding:"clamp(1rem,2vw,1.5rem) clamp(1rem,2vw,1.5rem) 0",flexShrink:0,borderBottom:"1px solid rgba(255,255,255,0.1)"}}>
               <p style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",letterSpacing:"0.22em",textTransform:"uppercase",color:"#fff",fontWeight:700}}>{cur.label}</p>
             </div>
@@ -164,21 +164,21 @@ function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
                 ))}
               </div>
               <div style={{display:"flex",gap:"clamp(0.4rem,0.8vw,0.6rem)",marginTop:"clamp(1rem,1.5vw,1.5rem)",flexWrap:"wrap"}}>
-                <a href="/granada-school/admissions" onClick={onClose} className="btn-solid" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Enquire</a>
+                <a href="/granada-school/contact" onClick={onClose} className="btn-solid" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Enquire</a>
                 <a href="/granada-school/admissions#process" onClick={onClose} className="btn-outline" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Apply Now</a>
               </div>
             </div>
           </div>
-          <div style={{width:"clamp(150px,20vw,320px)",flexShrink:0,position:"relative",overflow:"hidden",background:"#346988",display:"none"}}>
+          <div style={{width:"clamp(150px,20vw,320px)",flexShrink:0,position:"relative",overflow:"hidden",background:"#213558",display:"none"}}>
             {NAV_ITEMS.map((item,i)=>(
               <div key={i} style={{position:"absolute",inset:0,backgroundImage:`url(${item.image})`,backgroundSize:"cover",backgroundPosition:"center",opacity:active===i?1:0,transition:"opacity 0.5s ease"}}/>
             ))}
-            <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(52,105,136,0.8) 0%,rgba(52,105,136,0.2) 60%)"}}/>
+            <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(33,53,88,0.8) 0%,rgba(33,53,88,0.2) 60%)"}}/>
             <div style={{position:"absolute",bottom:"clamp(0.8rem,1.5vw,1.25rem)",left:"clamp(0.8rem,1.5vw,1.25rem)",right:"clamp(0.8rem,1.5vw,1.25rem)",zIndex:2}}>
-              <p style={{fontFamily:"'Cormorant Garamond',serif",color:"rgba(255,255,255,0.9)",fontSize:"clamp(0.7rem,1.2vw,0.85rem)",fontStyle:"italic"}}>{cur.imageCaption}</p>
+              <p style={{fontFamily:"'Euclid Circular A',sans-serif",color:"rgba(255,255,255,0.9)",fontSize:"clamp(0.7rem,1.2vw,0.85rem)"}}>{cur.imageCaption}</p>
             </div>
           </div>
-          <style>{`@media(min-width:768px){div[style*="background:#346988"]{display:block!important}}`}</style>
+          <style>{`@media(min-width:768px){div[style*="background:#213558"]{display:block!important}}`}</style>
         </div>
       </div>
       {/* Footer */}
@@ -205,19 +205,19 @@ function Navbar(){
     <header style={{position:"fixed",top:0,left:0,right:0,zIndex:100,transition:"all 0.4s ease",background:scrolled?"rgba(255,255,255,0.97)":"transparent",backdropFilter:scrolled?"blur(10px)":"none",boxShadow:scrolled?"0 1px 0 #e8e6e3":"none",padding:scrolled?"0.7rem 0":"clamp(0.8rem,2vw,1.2rem) 0"}}>
       <div style={{maxWidth:1280,margin:"0 auto",padding:"0 clamp(1rem,2vw,2rem)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"clamp(0.8rem,1.5vw,1rem)"}}>
         <a href="/" style={{textDecoration:"none",display:"flex",alignItems:"center",minWidth:0}}>
-          <Image src={scrolled ? "/School3.svg" : "/School3-dark.svg"} alt="Granada School" width={190} height={90} style={{height:"auto",width:"clamp(120px,18vw,250px)"}} priority/>
+          <Image src={scrolled ? "/g-school.svg" : "/g-school-dark.svg"} alt="Granada School" width={110} height={44} style={{height:"auto",width:"clamp(50px,8vw,110px)"}} priority/>
         </a>
         <div style={{display:"flex",alignItems:"center",gap:"clamp(1rem,2vw,1.5rem)",flexWrap:"wrap",justifyContent:"flex-end",flex:1}}>
           <div style={{display:"none",gap:"clamp(0.75rem,1.5vw,1.25rem)",alignItems:"center"}} className="nav-quick">
-            {[{l:"Parents",h:"/granada-school#contact"},{l:"Enquire",h:"/granada-school/admissions"}].map(({l,h})=>(
+            {[{l:"Parents",h:"/granada-school#contact"},{l:"Enquire",h:"/granada-school/contact"}].map(({l,h})=>(
               <a key={l} href={h} style={{color:scrolled?"var(--muted)":"rgba(255,255,255,0.85)",textDecoration:"none",fontSize:"clamp(0.6rem,1.2vw,0.68rem)",letterSpacing:"0.1em",textTransform:"uppercase",fontWeight:500,transition:"color 0.2s",whiteSpace:"nowrap"}}
                 onMouseEnter={e=>(e.currentTarget.style.color="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.color=scrolled?"var(--muted)":"rgba(255,255,255,0.85)")}>{l}</a>
             ))}
             <a href="/granada-school/admissions" className="btn-green" style={{fontSize:"clamp(0.6rem,1.2vw,0.62rem)",padding:"clamp(0.4rem,0.8vw,0.5rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Apply Now</a>
           </div>
           <button onClick={()=>setOpen(true)} aria-label="Open menu"
-            style={{background:"none",border:`1px solid ${scrolled?"rgba(52,105,136,0.35)":"rgba(255,255,255,0.5)"}`,cursor:"pointer",display:"flex",flexDirection:"column",gap:5,padding:"0.5rem 0.6rem",transition:"border-color 0.3s",flexShrink:0}}
-            onMouseEnter={e=>(e.currentTarget.style.borderColor="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.borderColor=scrolled?"rgba(52,105,136,0.35)":"rgba(255,255,255,0.5)")}>
+            style={{background:"none",border:`1px solid ${scrolled?"rgba(33,53,88,0.35)":"rgba(255,255,255,0.5)"}`,cursor:"pointer",display:"flex",flexDirection:"column",gap:5,padding:"0.5rem 0.6rem",transition:"border-color 0.3s",flexShrink:0}}
+            onMouseEnter={e=>(e.currentTarget.style.borderColor="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.borderColor=scrolled?"rgba(33,53,88,0.35)":"rgba(255,255,255,0.5)")}>
             <span style={{width:21,height:1.5,background:scrolled?"var(--primary)":"#fff",display:"block",transition:"background 0.4s"}}/>
             <span style={{width:21,height:1.5,background:scrolled?"var(--primary)":"#fff",display:"block",transition:"background 0.4s"}}/>
             <span style={{width:13,height:1.5,background:"var(--secondary)",display:"block"}}/>
@@ -256,17 +256,19 @@ function Hero(){
       <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,rgba(13,12,13,0.72) 35%,rgba(13,12,13,0.25) 100%)"}}/>
       <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(13,12,13,0.5) 0%,transparent 50%)"}}/>
       <div style={{position:"relative",zIndex:5,height:"100%",maxWidth:1280,margin:"0 auto",padding:"0 clamp(1rem,2vw,2rem)",display:"flex",flexDirection:"column",justifyContent:"center",paddingTop:"clamp(60px,10vw,80px)"}}>
-        <div style={{maxWidth:"clamp(280px,90vw,660px)",opacity:loaded?1:0,transition:"opacity 1s ease 0.2s"}}>
-          <p style={{color:"var(--secondary)",textTransform:"uppercase",letterSpacing:"0.28em",fontSize:"clamp(0.5rem,1vw,0.65rem)",fontWeight:700,marginBottom:"clamp(0.8rem,1.5vw,1.1rem)"}}>CBE · Junior &amp; Senior · Girls' Boarding</p>
-          <h1 className="font-display" style={{fontSize:"clamp(2rem,7vw,5.5rem)",fontWeight:600,lineHeight:1.02,color:"#fff",marginBottom:"0.4rem"}}>Granada</h1>
-          <h1 className="font-display" style={{fontSize:"clamp(2rem,7vw,5.5rem)",fontWeight:300,fontStyle:"italic",lineHeight:1.02,color:"var(--secondary)",marginBottom:"clamp(1.2rem,2vw,1.8rem)"}}>CBE School</h1>
-          <div style={{width:"clamp(35px,5vw,50px)",height:2,background:"var(--secondary)",marginBottom:"clamp(1rem,1.5vw,1.5rem)"}}/>
-          <p style={{fontSize:"clamp(0.85rem,1.5vw,1rem)",fontWeight:300,lineHeight:1.8,color:"rgba(255,255,255,0.85)",maxWidth:480,marginBottom:"clamp(1.8rem,2.5vw,2.5rem)"}}>
+        <div style={{display:"flex",alignItems:"flex-end",gap:"clamp(2rem,4vw,4rem)",flexWrap:"wrap",opacity:loaded?1:0,transition:"opacity 1s ease 0.2s"}}>
+          <div style={{flex:"1 1 auto",minWidth:"clamp(280px,50vw,480px)"}}>
+            <p style={{color:"var(--secondary)",textTransform:"uppercase",letterSpacing:"0.28em",fontSize:"clamp(0.5rem,1vw,0.65rem)",fontWeight:700,marginBottom:"clamp(0.8rem,1.5vw,1.1rem)"}}>CBE · Junior &amp; Senior · Girls' Boarding</p>
+            <h1 className="font-display" style={{fontSize:"clamp(2rem,7vw,5.5rem)",fontWeight:600,lineHeight:1.02,color:"#fff",marginBottom:"0.4rem"}}>Granada</h1>
+            <h1 className="font-display" style={{fontSize:"clamp(2rem,7vw,5.5rem)",fontWeight:300,lineHeight:1.02,color:"var(--secondary)",marginBottom:"clamp(1.2rem,2vw,1.8rem)"}}>School</h1>
+            <div style={{width:"clamp(35px,5vw,50px)",height:2,background:"var(--secondary)",marginBottom:"clamp(1rem,1.5vw,1.5rem)"}}/>
+            <p style={{fontSize:"clamp(0.85rem,1.5vw,1rem)",fontWeight:300,lineHeight:1.8,color:"rgba(255,255,255,0.85)",maxWidth:480}}>
             Nurturing confident, disciplined, and high-achieving young women along Kenya's beautiful Vipingo coast — in a safe, structured girls' boarding environment.
           </p>
-          <div style={{display:"flex",gap:"clamp(0.6rem,1.5vw,0.9rem)",flexWrap:"wrap"}}>
-            <a href="/granada-school/about" className="btn-green" style={{fontSize:"clamp(0.6rem,1vw,0.68rem)",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)"}}>Discover More</a>
-            <a href="/granada-school#admissions" style={{display:"inline-block",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)",background:"transparent",border:"1px solid rgba(255,255,255,0.6)",color:"#fff",textTransform:"uppercase",letterSpacing:"0.14em",fontSize:"clamp(0.6rem,1vw,0.68rem)",fontWeight:600,textDecoration:"none",transition:"all 0.3s"}}
+          </div>
+          <div style={{display:"flex",flexDirection:"column",gap:"clamp(0.6rem,1.5vw,0.9rem)",flexShrink:0}}>
+            <a href="/granada-school/about" className="btn-green" style={{fontSize:"clamp(0.6rem,1vw,0.68rem)",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)",textAlign:"center",whiteSpace:"nowrap"}}>Discover More</a>
+            <a href="/granada-school#admissions" style={{display:"inline-block",padding:"clamp(0.5rem,1vw,0.75rem) clamp(1.2rem,2vw,2rem)",background:"transparent",border:"1px solid rgba(255,255,255,0.6)",color:"#fff",textTransform:"uppercase",letterSpacing:"0.14em",fontSize:"clamp(0.6rem,1vw,0.68rem)",fontWeight:600,textDecoration:"none",transition:"all 0.3s",textAlign:"center",whiteSpace:"nowrap"}}
               onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.15)";}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>
               Enquire Today
             </a>
@@ -289,7 +291,7 @@ function TaglineStrip(){
       <div style={{maxWidth:1280,margin:"0 auto",display:"flex",justifyContent:"center",gap:"clamp(1.5rem,3vw,2.5rem)",flexWrap:"wrap",alignItems:"center"}}>
         {["Academic Excellence · CBE","Safe Girls' Boarding Environment","Holistic Character Formation","Every Learner Rises"].map((t,i)=>(
           <span key={i} style={{display:"flex",alignItems:"center",gap:"clamp(0.6rem,1.2vw,1rem)"}}>
-            <span className="font-display" style={{fontSize:"clamp(0.8rem,1.5vw,1rem)",fontStyle:"italic",fontWeight:400,color:"#fff",letterSpacing:"0.03em",whiteSpace:"nowrap"}}>{t}</span>
+            <span className="font-display" style={{fontSize:"clamp(0.8rem,1.5vw,1rem)",fontWeight:400,color:"#fff",letterSpacing:"0.03em",whiteSpace:"nowrap"}}>{t}</span>
             {i<3&&<span style={{width:4,height:4,borderRadius:"50%",background:"var(--secondary)",flexShrink:0}}/>}
           </span>
         ))}
@@ -330,7 +332,7 @@ function Welcome(){
           ].map((img,i)=>(
             <div key={i} className="img-hover" style={{gridColumn:img.col,gridRow:img.row,overflow:"hidden",position:"relative"}}>
               <img src={img.src} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-              <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(52,105,136,0.3),transparent 60%)"}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(33,53,88,0.3),transparent 60%)"}}/>
             </div>
           ))}
           <div style={{position:"absolute",bottom:"-16px",left:"-16px",width:90,height:90,background:"var(--secondary)",opacity:0.18,zIndex:-1,display:"none"}} className="welcome-accent"/>
@@ -345,7 +347,7 @@ function Welcome(){
 function Curriculum(){
   const {ref,vis}=useInView(0.1);
   const curricula=[
-    {title:"CBC",subtitle:"Competency Based Curriculum",desc:"Kenya's national framework building strong local foundations, nurturing 21st-century skills through competency-driven, holistic learning.",color:"var(--primary)",border:"rgba(52,105,136,0.2)",features:["Holistic Development","Local Relevance","Values-Based Learning","STEM Integration"]},
+    {title:"CBC",subtitle:"Competency Based Curriculum",desc:"Kenya's national framework building strong local foundations, nurturing 21st-century skills through competency-driven, holistic learning.",color:"var(--primary)",border:"rgba(33,53,88,0.2)",features:["Holistic Development","Local Relevance","Values-Based Learning","STEM Integration"]},
     {title:"Boarding",subtitle:"Structured Boarding Programme",desc:"A secure home-away-from-home with trained matrons, supervised prep sessions, nutritious meals, counselling support, and a strong sisterhood community.",color:"var(--accent-warm)",border:"rgba(147,108,81,0.2)",features:["Safe Supervised Dormitories","Structured Prep Sessions","Pastoral Care & Counselling","Balanced Meals & Routines"]},
   ];
   return(
@@ -404,7 +406,7 @@ function Pillars(){
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr",gap:"clamp(1rem,1.5vw,1.25rem)",minHeight:0}} className="pillars-grid">
           {items.map((item,i)=>(
-            <div key={i} className="img-hover" style={{position:"relative",height:"clamp(280px,50vw,460px)",overflow:"hidden",opacity:vis?1:0,transform:vis?"none":"translateY(40px)",transition:`all 0.9s ease ${i*0.12}s`}}>
+            <div key={i} className="img-hover" style={{position:"relative",minHeight:"clamp(280px,50vw,460px)",height:"100%",overflow:"hidden",opacity:vis?1:0,transform:vis?"none":"translateY(40px)",transition:`all 0.9s ease ${i*0.12}s`}}>
               <img src={item.img} alt={item.title} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
               <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(13,12,13,0.88) 0%,rgba(13,12,13,0.15) 65%,transparent 100%)"}}/>
               <div style={{position:"absolute",top:"clamp(0.8rem,1.5vw,1.1rem)",left:"clamp(0.8rem,1.5vw,1.1rem)"}}>
@@ -428,10 +430,10 @@ function QuoteBanner(){
   return(
     <section style={{position:"relative",overflow:"hidden",padding:"clamp(3rem,5vw,5.5rem) clamp(1rem,2vw,2rem)"}}>
       <div style={{position:"absolute",inset:0,backgroundImage:"url(/building.jpeg)",backgroundSize:"cover",backgroundPosition:"center",backgroundAttachment:"fixed"}}/>
-      <div style={{position:"absolute",inset:0,background:"rgba(52,105,136,0.88)"}}/>
+      <div style={{position:"absolute",inset:0,background:"rgba(33,53,88,0.88)"}}/>
       <div style={{position:"relative",zIndex:2,maxWidth:820,margin:"0 auto",textAlign:"center"}}>
         <p style={{color:"var(--accent-light)",textTransform:"uppercase",letterSpacing:"0.3em",fontSize:"clamp(0.55rem,0.8vw,0.62rem)",fontWeight:700,marginBottom:"clamp(1.2rem,1.75vw,1.75rem)"}}>Our Mission</p>
-        <blockquote className="font-display" style={{fontSize:"clamp(1.2rem,3.5vw,2.6rem)",fontStyle:"italic",fontWeight:400,color:"#fff",lineHeight:1.45,marginBottom:"clamp(1.5rem,2.25vw,2.25rem)"}}>
+        <blockquote className="font-display" style={{fontSize:"clamp(1.2rem,3.5vw,2.6rem)",fontWeight:400,color:"#fff",lineHeight:1.45,marginBottom:"clamp(1.5rem,2.25vw,2.25rem)"}}>
           "We are committed to inspiring excellence and preparing learners for a successful future — today, tomorrow, and beyond."
         </blockquote>
         <div style={{width:"clamp(32px,4vw,44px)",height:2,background:"var(--secondary)",margin:"0 auto clamp(1.2rem,1.75vw,1.75rem)"}}/>
@@ -495,8 +497,8 @@ function AdmissionsCTA(){
         <h2 className="section-heading">Begin Your <em>Granada Story</em></h2>
         <p className="body-text" style={{maxWidth:520,margin:"clamp(0.8rem,1.5vw,1.25rem) auto clamp(1.5rem,2.5vw,2.5rem)",fontSize:"clamp(0.9rem,1vw,1.05rem)"}}>Join a community of passionate learners, dedicated educators, and caring families at Granada CBE Junior &amp; Senior Girls' Boarding Secondary School — on Kenya's breathtaking Vipingo coast.</p>
         <div style={{display:"flex",justifyContent:"center",gap:"clamp(0.6rem,1.2vw,1rem)",flexWrap:"wrap"}}>
-          <a href="/granada-school#contact" className="btn-solid" style={{fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}>Enquire Now</a>
-          <a href="/granada-school/admissions#team" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
+          <a href="/granada-school/contact" className="btn-solid" style={{fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}>Enquire Now</a>
+          <a href="/granada-school/contact?type=visit" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
             onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.15)";}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>Book a Visit</a>
           <a href="/granada-school/admissions#process" className="btn-outline" style={{borderColor:"rgba(255,255,255,0.55)",color:"#fff",fontSize:"clamp(0.65rem,1vw,0.75rem)",padding:"clamp(0.5rem,0.8vw,0.65rem) clamp(1.1rem,2vw,1.5rem)"}}
             onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.15)";}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>Apply</a>
@@ -509,12 +511,12 @@ function AdmissionsCTA(){
 /* ── FOOTER ────────────────────────────────────────────────────────────────── */
 function Footer(){
   return(
-    <footer id="contact" style={{background:"var(--primary-dark)",color:"#fff",padding:"clamp(3rem,4vw,5rem) clamp(1rem,2vw,2rem) clamp(1.2rem,2vw,2rem)"}}>
+    <footer id="contact" style={{background:"var(--primary)",color:"#fff",padding:"clamp(3rem,4vw,5rem) clamp(1rem,2vw,2rem) clamp(1.2rem,2vw,2rem)"}}>
       <div style={{maxWidth:1280,margin:"0 auto"}}>
         <div style={{display:"grid",gridTemplateColumns:"1fr",gap:"clamp(2rem,3vw,4rem)",marginBottom:"clamp(2rem,3vw,3.5rem)"}} className="footer-cols">
           <div>
             <a href="/granada-school" style={{textDecoration:"none"}}>
-              <Image src="/School3-dark.svg" alt="Granada School" width={190} height={90} style={{width:"clamp(140px,16vw,250px)",height:"auto",marginBottom:"0.75rem"}}/>
+              <Image src="/g-school-dark.svg" alt="Granada School" width={190} height={90} style={{width:"clamp(140px,16vw,250px)",height:"auto",marginBottom:"0.75rem"}}/>
             </a>
             <p style={{color:"rgba(255,255,255,0.65)",fontSize:"clamp(0.75rem,0.9vw,0.82rem)",lineHeight:1.8,maxWidth:260,marginTop:"clamp(0.8rem,1.2vw,1.25rem)"}}>CBE Junior &amp; Senior Girls' Boarding Secondary School.</p>
             <div style={{display:"flex",gap:"clamp(0.4rem,0.8vw,0.65rem)",marginTop:"clamp(0.9rem,1.2vw,1.4rem)"}}>

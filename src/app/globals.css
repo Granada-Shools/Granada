@@ -2,9 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Euclid Circular A ─────────────────────────────────────────────────
+   Place font files in public/fonts/ and uncomment the @font-face rules.
+   Supported weights: Regular (400), Medium (500), Bold (700).
+──────────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Light%20Italic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Medium%20Italic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20SemiBold%20Italic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url('/fonts/Euclid%20Circular%20A%20Bold%20Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --primary:      #346988;
-  --primary-dark: #27536a;
+  --primary:      #213558;
+  --primary-dark: #192844;
   --secondary:    #aac20c;
   --white:        #ffffff;
   --dark:         #0d0c0d;
@@ -22,13 +97,15 @@
 
 * { color-scheme: light; box-sizing: border-box; }
 html {
+  font-size: 22px;
   scroll-behavior: smooth;
 }
 
 body {
   color:  var(--body-text);
   background-color: var(--body-bg);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Euclid Circular A', sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -120,7 +197,9 @@ a:hover {
   filter: brightness(1.1);
 }
 
-.font-display { font-family: 'Cormorant Garamond', serif; }
+.font-display { font-family: 'Euclid Circular A', sans-serif; }
+
+em { font-style: normal; }
 
 /* ── Section themes ──────────────────────────────────────────────────── */
 .section-light {
@@ -135,14 +214,17 @@ a:hover {
   background: var(--primary);
   color: var(--white);
 }
+.section-blue p, .section-blue span, .section-blue li, .section-blue td, .section-blue th { color: inherit; }
 .section-blue-dark {
   background: var(--primary-dark);
   color: var(--white);
 }
+.section-blue-dark p, .section-blue-dark span, .section-blue-dark li, .section-blue-dark td, .section-blue-dark th { color: inherit; }
 .section-dark {
   background: var(--dark);
   color: var(--white);
 }
+.section-dark p, .section-dark span, .section-dark li, .section-dark td, .section-dark th { color: inherit; }
 
 /* ── Typography helpers ──────────────────────────────────────────────── */
 .label-tag {
@@ -159,24 +241,26 @@ a:hover {
 .section-dark  .label-tag { color: var(--accent-light); }
 
 .section-heading {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Euclid Circular A', sans-serif;
   font-size: clamp(2rem, 3.8vw, 3rem);
   font-weight: 500;
   line-height: 1.1;
   color: var(--primary);
   animation: slideInUp 0.8s ease-out;
+  max-width: none;
+  width: 100%;
 }
 .section-blue  .section-heading,
 .section-dark  .section-heading { color: var(--white); }
 
-.section-heading em { font-style: italic; color: var(--secondary); }
+.section-heading em { font-style: normal; color: var(--secondary); }
 .section-blue  .section-heading em { color: var(--accent-light); }
 
 .body-text {
-  color: var(--muted);
+  color: var(--body-text);
   line-height: 1.9;
-  font-size: 0.9rem;
-  font-weight: 300;
+  font-size: 1rem;
+  font-weight: 400;
 }
 .section-blue  .body-text { color: rgba(255,255,255,0.82); }
 .section-dark  .body-text { color: rgba(255,255,255,0.75); }
@@ -205,7 +289,7 @@ a:hover {
   text-decoration: none;
   font-family: inherit;
 }
-.btn-solid:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(52, 105, 136, 0.3); }
+.btn-solid:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(33, 53, 88, 0.3); }
 
 .btn-outline {
   display: inline-block;
@@ -222,7 +306,7 @@ a:hover {
   text-decoration: none;
   font-family: inherit;
 }
-.btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(52, 105, 136, 0.2); }
+.btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(33, 53, 88, 0.2); }
 
 /* On blue sections, invert button styles */
 .section-blue .btn-solid  { background: var(--white); border-color: var(--white); color: var(--primary); }
@@ -285,8 +369,91 @@ a:hover {
 
 @media (max-width: 640px) { .nav-quick { display: none !important; } }
 
+/* Section sidebar: horizontal tab strip on mobile, sticky sidebar on desktop */
+@media (max-width: 767px) {
+  aside.section-sidebar {
+    display: block !important;
+    width: 100% !important;
+    position: sticky !important;
+    top: 60px !important;
+    z-index: 30;
+    padding: 0 !important;
+    background: #fff !important;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  aside.section-sidebar > p { display: none !important; }
+  aside.section-sidebar > .sidebar-where-next { display: none !important; }
+  aside.section-sidebar > nav {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    border-left: none !important;
+    gap: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 clamp(0.75rem,2vw,1rem);
+  }
+  aside.section-sidebar > nav::-webkit-scrollbar { display: none; }
+  aside.section-sidebar > nav a {
+    white-space: nowrap !important;
+    border-left: none !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 0.75rem 0.85rem !important;
+    margin-left: 0 !important;
+    font-size: clamp(0.62rem, 0.85vw, 0.72rem) !important;
+  }
+  .section-layout { padding-left: 0 !important; padding-right: 0 !important; gap: 0 !important; flex-direction: column !important; }
+}
+
+/* Image+text cards: cap image height on mobile so text stays visible */
+@media (max-width: 767px) {
+  .img-hover {
+    max-height: 260px !important;
+    height: auto !important;
+  }
+  .news-grid article > .img-hover,
+  .news-grid article > div:first-child {
+    max-height: 220px !important;
+  }
+}
+
+/* Hero responsive: reduce top spacing + stack buttons below text on mobile */
+/* Hero: 2-grid (text + buttons) on desktop, stacked on mobile */
+@media (max-width: 767px) {
+  .hero-inner { padding-top: 100px !important; }
+  .hero-content { flex-direction: column !important; align-items: flex-start !important; flex-wrap: wrap !important; }
+  .hero-content > div:first-child { flex-basis: 100% !important; min-width: 0 !important; }
+}
+
+/* Sections inside section-layout: full available width, reduced spacing */
+.section-layout section { padding-left: 0 !important; padding-right: 0 !important; }
+.section-layout .section-cream,
+.section-layout .section-blue,
+.section-layout .section-blue-dark { padding-left: 0 !important; padding-right: 0 !important; }
+
+/* Section header blocks: always full-width and centered */
+.section-header-block {
+  width: 100%;
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+.section-header-block .label-tag { display: block; text-align: center; }
+.section-header-block .section-heading { text-align: center; }
+.section-header-block .divider { margin-left: auto; margin-right: auto; }
+.section-header-block .body-text { text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+/* All section headings and labels: center by default */
+.section-heading { text-align: center; }
+.label-tag { text-align: center; display: block; }
+.divider { margin-left: auto; margin-right: auto; }
+
+/* Float image blocks: responsive unfloat on mobile */
+@media(max-width:768px) {
+  .section-float-img { float: none !important; width: 100% !important; margin: 0 0 1.2rem 0 !important; }
+}
+
 /* ── Logo theming ───────────────────────────────────────────────────────
- * Schools.svg uses fill="currentColor" with color="#346988" as the SVG-level
+ * Schools.svg uses fill="currentColor" with color="#213558" as the SVG-level
  * default. When loaded via Next.js <Image> (renders as <img>), the page's CSS
  * cannot cascade into the external SVG document.
  *

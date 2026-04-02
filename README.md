@@ -30,7 +30,7 @@ Granada International School. Follows the Edexcel / British international curric
 
 | Token | Hex | Usage |
 |---|---|---|
-| Primary Blue | `#346988` | Main brand colour |
+| Primary Blue | `#213558` | Main brand colour |
 | Secondary Green | `#aac20c` | Accents & highlights |
 | Dark | `#0d0c0d` | Body text |
 | Gray | `#afaeaf` | Secondary text |
@@ -51,8 +51,8 @@ Granada International School. Follows the Edexcel / British international curric
 
 ```
 public/
-  School3.svg              # Granada School logo (dark, for light backgrounds)
-  School3-dark.svg         # Granada School logo (light, for dark backgrounds)
+  g-school.svg             # Granada School logo (for light backgrounds)
+  g-school-dark.svg        # Granada School logo (for dark backgrounds)
   Schools.svg / Schools-dark.svg   # Combined group logos
   *.jpg                    # Hero & campus images
 
