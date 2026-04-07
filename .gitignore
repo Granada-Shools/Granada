@@ -29,6 +29,7 @@ Desktop.ini
 *.key
 *.crt
 *.p12
+*.ps1
 
 # Debug
 npm-debug.log*

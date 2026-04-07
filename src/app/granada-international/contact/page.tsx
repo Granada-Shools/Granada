@@ -1,22 +1,29 @@
-"use client";
+﻿"use client";
 import Image from "next/image";
 import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
+
+
+
+
 /* ── NAV DATA ──────────────────────────────────────────────────────────────── */
+import SchoolNavbar from '@/components/SchoolNavbar';
+import SchoolFooter from '@/components/SchoolFooter';
+
 const NAV_ITEMS = [
   {label:"About Us",href:"/granada-international/about",image:"/building.jpeg",imageCaption:"A Unique Blend of Discovery + Purpose",
-    children:[{label:"Principal's Welcome",href:"/granada-international/about#welcome"},{label:"Vision & Mission",href:"/granada-international/about#vision"},{label:"Core Values",href:"/granada-international/about#values"},{label:"Our Story",href:"/granada-international/about#history"},{label:"Boarding",href:"/granada-international/about#boarding"},{label:"Staff & Leadership",href:"/granada-international/about#staff"}]},
+    children:[{label:"Principal's Welcome",href:"/granada-international/about/welcome"},{label:"Vision & Mission",href:"/granada-international/about/vision"},{label:"Core Values",href:"/granada-international/about/values"},{label:"Our Story",href:"/granada-international/about/history"},{label:"Boarding",href:"/granada-international/about/boarding"},{label:"Staff & Leadership",href:"/granada-international/about/staff"}]},
   {label:"Admissions",href:"/granada-international/admissions",image:"/dorm.jpeg",imageCaption:"A Unique Blend of Ambition + Opportunity",
-    children:[{label:"About Admissions",href:"/granada-international/admissions#intro"},{label:"Admissions Team",href:"/granada-international/admissions#team"},{label:"KG–Year 9 Process",href:"/granada-international/admissions#process"},{label:"Senior School",href:"/granada-international/admissions#senior-process"},{label:"Apply",href:"/granada-international/admissions#apply"}]},
+    children:[{label:"About Admissions",href:"/granada-international/admissions/intro"},{label:"Admissions Team",href:"/granada-international/admissions/team"},{label:"KG–Year 9 Process",href:"/granada-international/admissions/process"},{label:"Senior School",href:"/granada-international/admissions/senior-process"},{label:"Apply",href:"/granada-international/admissions/apply"}]},
   {label:"Academic",href:"/granada-international/academics",image:"/class.jpeg",imageCaption:"A Unique Blend of Knowledge + Excellence",
-    children:[{label:"Overview",href:"/granada-international/academics#overview"},{label:"Edexcel Curriculum",href:"/granada-international/academics#edexcel"},{label:"School Sections",href:"/granada-international/academics#sections"},{label:"University Pathways",href:"/granada-international/academics#university"},{label:"Apply",href:"/granada-international/academics#apply"}]},
+    children:[{label:"Overview",href:"/granada-international/academics/overview"},{label:"Edexcel Curriculum",href:"/granada-international/academics/edexcel"},{label:"School Sections",href:"/granada-international/academics/sections"},{label:"University Pathways",href:"/granada-international/academics/university"},{label:"Apply",href:"/granada-international/academics/apply"}]},
   {label:"Campus Life",href:"/granada-international/campus-life",image:"/sports.jpeg",imageCaption:"A Unique Blend of Growth + Community",
-    children:[{label:"Activities & Overview",href:"/granada-international/campus-life#activities"},{label:"Facilities",href:"/granada-international/campus-life#facilities"},{label:"Sports & Athletics",href:"/granada-international/campus-life#sports"},{label:"Arts & Drama",href:"/granada-international/campus-life#arts"},{label:"Music",href:"/granada-international/campus-life#music"},{label:"Co-Curricular",href:"/granada-international/campus-life#cocurricular"},{label:"Leadership",href:"/granada-international/campus-life#leadership"},{label:"Boarding Life",href:"/granada-international/campus-life#boarding"}]},
+    children:[{label:"Activities & Overview",href:"/granada-international/campus-life/activities"},{label:"Facilities",href:"/granada-international/campus-life/facilities"},{label:"Sports & Athletics",href:"/granada-international/campus-life/sports"},{label:"Arts & Drama",href:"/granada-international/campus-life/arts"},{label:"Music",href:"/granada-international/campus-life/music"},{label:"Co-Curricular",href:"/granada-international/campus-life/cocurricular"},{label:"Leadership",href:"/granada-international/campus-life/leadership"},{label:"Boarding Life",href:"/granada-international/campus-life/boarding"}]},
   {label:"Pastoral & Wellbeing",href:"/granada-international/wellbeing",image:"/sports2.jpeg",imageCaption:"A Unique Blend of Care + Belonging",
-    children:[{label:"Wellbeing Approach",href:"/granada-international/wellbeing#approach"},{label:"Counselling Support",href:"/granada-international/wellbeing#counselling"},{label:"Core Values",href:"/granada-international/wellbeing#values"},{label:"Character Education",href:"/granada-international/wellbeing#character"},{label:"Global Citizenship",href:"/granada-international/wellbeing#global"},{label:"Boarding Pastoral Care",href:"/granada-international/wellbeing#boarding-care"}]},
+    children:[{label:"Wellbeing Approach",href:"/granada-international/wellbeing/approach"},{label:"Counselling Support",href:"/granada-international/wellbeing/counselling"},{label:"Core Values",href:"/granada-international/wellbeing/values"},{label:"Character Education",href:"/granada-international/wellbeing/character"},{label:"Global Citizenship",href:"/granada-international/wellbeing/global"},{label:"Boarding Pastoral Care",href:"/granada-international/wellbeing/boarding-care"}]},
   {label:"Latest News",href:"/granada-international/news",image:"/building2.jpeg",imageCaption:"A Unique Blend of Stories + Achievements",
-    children:[{label:"Latest News",href:"/granada-international/news#latest-news"},{label:"Events",href:"/granada-international/news#events"},{label:"Newsletters",href:"/granada-international/news#newsletters"},{label:"Social Media",href:"/granada-international/news#social"}]},
+    children:[{label:"Latest News",href:"/granada-international/news/latest-news"},{label:"Events",href:"/granada-international/news/events"},{label:"Newsletters",href:"/granada-international/news/newsletters"},{label:"Social Media",href:"/granada-international/news/social"}]},
   {label:"Parents",href:"/granada-international#contact",image:"/staffroom.jpeg",imageCaption:"A Unique Blend of Partnership + Trust",
     children:[{label:"Parent Portal",href:"/granada-international#contact"},{label:"School Calendar",href:"/granada-international#contact"},{label:"Term Dates",href:"/granada-international#contact"},{label:"Reports & Policies",href:"/granada-international#contact"}]},
   {label:"Support Us",href:"/granada-international#contact",image:"/art-room.jpeg",imageCaption:"A Unique Blend of Giving + Impact",
@@ -24,121 +31,6 @@ const NAV_ITEMS = [
 ];
 
 /* ── SIDE NAV ──────────────────────────────────────────────────────────────── */
-function SideNav({open,onClose}:{open:boolean;onClose:()=>void}){
-  const [active,setActive]=useState(0);
-  const [search,setSearch]=useState("");
-  const [sf,setSf]=useState(false);
-  useEffect(()=>{document.body.style.overflow=open?"hidden":"";return()=>{document.body.style.overflow="";};},[open]);
-  useEffect(()=>{if(open)setActive(0);},[open]);
-  const cur=NAV_ITEMS[active];
-  const sr=search.trim()?NAV_ITEMS.flatMap(n=>[{label:n.label,href:n.href},...(n.children||[])].filter(c=>c.label.toLowerCase().includes(search.toLowerCase()))):[];
-  const P="#213558";const S="#aac20c";
-  return(<>
-    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:199,background:"rgba(33,53,88,0.45)",opacity:open?1:0,pointerEvents:open?"auto":"none",transition:"opacity 0.4s",backdropFilter:open?"blur(3px)":"none"}}/>
-    <div style={{position:"fixed",top:0,right:0,bottom:0,zIndex:200,width:"100%",maxWidth:"min(100vw,900px)",display:"flex",flexDirection:"column",background:"#213558",transform:open?"translateX(0)":"translateX(100%)",transition:"transform 0.5s cubic-bezier(0.77,0,0.175,1)",boxShadow:"-8px 0 60px rgba(0,0,0,0.3)",fontSize:"clamp(0.7rem,1.5vw,1rem)"}}>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"clamp(0.8rem,2vw,1.1rem) clamp(1.5rem,3vw,2.5rem)",borderBottom:"1px solid rgba(255,255,255,0.1)",flexShrink:0,gap:"clamp(0.8rem,2vw,1.5rem)",background:"rgba(0,0,0,0.2)",flexWrap:"wrap"}}>
-        <div style={{display:"flex",gap:"clamp(0.5rem,1.5vw,1.5rem)",alignItems:"center",flexWrap:"wrap",flex:1,minWidth:0}}>
-          {[{label:"Parents",href:"/granada-international#contact"},{label:"Enquire",href:"/granada-international/contact"},{label:"Contact us",href:"/granada-international/contact"}].map(l=>(
-            <a key={l.label} href={l.href} onClick={onClose} style={{color:"#fff",textDecoration:"none",fontSize:"clamp(0.6rem,1.2vw,0.7rem)",letterSpacing:"0.08em",textTransform:"uppercase",fontWeight:500,transition:"color 0.2s",whiteSpace:"nowrap"}}
-              onMouseEnter={e=>(e.currentTarget.style.color=S)} onMouseLeave={e=>(e.currentTarget.style.color="#fff")}>{l.label}</a>
-          ))}
-        </div>
-        <div style={{flex:1,maxWidth:280,position:"relative"}}>
-          <input type="text" placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)} onFocus={()=>setSf(true)} onBlur={()=>setTimeout(()=>setSf(false),150)}
-            style={{width:"100%",background:"rgba(255,255,255,0.1)",border:`1px solid ${sf?"#fff":"rgba(255,255,255,0.3)"}`,color:"#fff",padding:"0.45rem 2rem 0.45rem 0.8rem",fontSize:"clamp(0.72rem,1vw,0.8rem)",outline:"none",transition:"border-color 0.2s",fontFamily:"inherit"}}/>
-          <span style={{position:"absolute",right:"0.7rem",top:"50%",transform:"translateY(-50%)",color:"rgba(255,255,255,0.6)",fontSize:"clamp(0.78rem,1.1vw,0.88rem)",pointerEvents:"none"}}>⌕</span>
-          {sf&&sr.length>0&&(
-            <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:"#fff",boxShadow:"0 8px 32px rgba(0,0,0,0.18)",zIndex:10,maxHeight:220,overflowY:"auto"}}>
-              {sr.map((r,i)=>(
-                <a key={i} href={r.href} onClick={()=>{setSearch("");onClose();}} style={{display:"block",padding:"0.6rem 1rem",color:"#1c1b1c",textDecoration:"none",fontSize:"clamp(0.75rem,1.02vw,0.82rem)",borderBottom:"1px solid #f0eee9",transition:"background 0.15s"}}
-                  onMouseEnter={e=>(e.currentTarget.style.background="#f7f6f3")} onMouseLeave={e=>(e.currentTarget.style.background="#fff")}>{r.label}</a>
-              ))}
-            </div>
-          )}
-        </div>
-        <button onClick={onClose} style={{background:"none",border:"1px solid rgba(255,255,255,0.4)",color:"#fff",width:"clamp(32px,6vw,36px)",height:"clamp(32px,6vw,36px)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,transition:"all 0.2s"}}
-          onMouseEnter={e=>{e.currentTarget.style.background=S;e.currentTarget.style.color=P;}} onMouseLeave={e=>{e.currentTarget.style.background="none";e.currentTarget.style.color="#fff";}} aria-label="Close">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><line x1="1" y1="1" x2="12" y2="12" stroke="currentColor" strokeWidth="1.5"/><line x1="12" y1="1" x2="1" y2="12" stroke="currentColor" strokeWidth="1.5"/></svg>
-        </button>
-      </div>
-      <div style={{flex:1,display:"flex",overflow:"hidden"}}>
-        <div style={{width:"clamp(180px,25vw,260px)",flexShrink:0,borderRight:"1px solid rgba(255,255,255,0.1)",overflowY:"auto",padding:"clamp(1rem,2vw,1.5rem) 0",background:"rgba(0,0,0,0.2)",minHeight:0}}>
-          {NAV_ITEMS.map((item,i)=>(
-            <button key={item.label} onMouseEnter={()=>setActive(i)} onClick={()=>setActive(i)}
-              style={{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",background:active===i?"rgba(255,255,255,0.15)":"transparent",border:"none",borderLeft:active===i?`3px solid ${S}`:"3px solid transparent",padding:"clamp(0.65rem,1.5vw,0.85rem) clamp(1.1rem,2vw,1.5rem) clamp(0.65rem,1.5vw,0.85rem) clamp(1rem,2vw,1.35rem)",cursor:"pointer",textAlign:"left",transition:"all 0.2s",gap:"0.5rem"}}>
-              <span style={{fontSize:"clamp(0.65rem,1.2vw,0.8rem)",fontWeight:active===i?700:400,letterSpacing:"0.06em",textTransform:"uppercase",color:active===i?S:"#fff",transition:"color 0.2s",fontFamily:"inherit",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{item.label}</span>
-              <svg width="6" height="10" viewBox="0 0 6 10" fill="none" style={{opacity:active===i?1:0.4,transition:"opacity 0.2s",flexShrink:0}}><path d="M1 1l4 4-4 4" stroke={active===i?S:"#fff"} strokeWidth="1.2"/></svg>
-            </button>
-          ))}
-        </div>
-        <div style={{flex:1,overflowY:"auto",padding:"clamp(1.5rem,3vw,2.5rem)",display:"flex",flexDirection:"column"}}>
-          <div style={{marginBottom:"clamp(1rem,2vw,1.5rem)"}}>
-            <a href={cur.href} onClick={onClose} style={{display:"inline-flex",alignItems:"center",gap:"0.5rem",color:S,textDecoration:"none",fontSize:"clamp(0.85rem,1.4vw,1.1rem)",fontWeight:700,letterSpacing:"0.05em",textTransform:"uppercase",transition:"opacity 0.2s"}}
-              onMouseEnter={e=>(e.currentTarget.style.opacity="0.8")} onMouseLeave={e=>(e.currentTarget.style.opacity="1")}>
-              {cur.label} <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5h8M5 1l4 4-4 4" stroke={S} strokeWidth="1.2" strokeLinecap="round"/></svg>
-            </a>
-            {cur.imageCaption&&<p style={{color:"rgba(255,255,255,0.5)",fontSize:"clamp(0.62rem,0.9vw,0.7rem)",marginTop:"0.4rem",fontStyle:"italic"}}>{cur.imageCaption}</p>}
-          </div>
-          <div style={{display:"flex",flexDirection:"column",gap:"0.15rem",marginBottom:"auto"}}>
-            {(cur.children||[]).map((child,i)=>(
-              <a key={i} href={child.href} onClick={onClose} style={{display:"flex",alignItems:"center",gap:"clamp(0.4rem,0.8vw,0.6rem)",padding:"clamp(0.4rem,0.8vw,0.55rem) 0",color:"#fff",textDecoration:"none",fontSize:"clamp(0.7rem,1.2vw,0.8rem)",borderBottom:"1px solid rgba(255,255,255,0.1)",transition:"color 0.2s"}}
-                onMouseEnter={e=>{e.currentTarget.style.color=S;const d=e.currentTarget.querySelector(".dot") as HTMLElement;if(d)d.style.background=S;}}
-                onMouseLeave={e=>{e.currentTarget.style.color="#fff";const d=e.currentTarget.querySelector(".dot") as HTMLElement;if(d)d.style.background="transparent";}}>
-                <span className="dot" style={{width:5,height:5,border:`1px solid ${S}`,flexShrink:0,transition:"background 0.2s",background:"transparent"}}/>{child.label}
-              </a>
-            ))}
-          </div>
-          <div style={{display:"flex",gap:"clamp(0.4rem,0.8vw,0.6rem)",marginTop:"clamp(1rem,1.5vw,1.5rem)",flexWrap:"wrap"}}>
-            <a href="/granada-international/contact" onClick={onClose} className="btn-solid" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Enquire</a>
-            <a href="/granada-international/admissions#apply" onClick={onClose} className="btn-outline" style={{fontSize:"clamp(0.55rem,1rem,0.6rem)",padding:"clamp(0.3rem,0.6vw,0.45rem) clamp(0.8rem,1.5vw,1.2rem)",borderColor:"#fff",color:"#fff"}}>Apply Now</a>
-          </div>
-        </div>
-      </div>
-      <div style={{padding:"clamp(1rem,2vw,1.5rem) clamp(1.5rem,3vw,2.5rem)",borderTop:"1px solid rgba(255,255,255,0.1)",display:"flex",gap:"clamp(0.6rem,1.2vw,0.8rem)",flexShrink:0}}>
-        {["F","X","I","L","Y"].map((k,i)=>(
-          <a key={k} href="#" style={{width:"clamp(24px,4vw,28px)",height:"clamp(24px,4vw,28px)",border:"1px solid rgba(255,255,255,0.4)",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:"clamp(0.45rem,0.8vw,0.55rem)",fontWeight:700,textDecoration:"none",transition:"all 0.2s"}}
-            onMouseEnter={e=>{e.currentTarget.style.background=S;e.currentTarget.style.borderColor=S;e.currentTarget.style.color=P;}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.borderColor="rgba(255,255,255,0.4)";e.currentTarget.style.color="#fff";}}>{k}</a>
-        ))}
-      </div>
-    </div>
-  </>);
-}
-
-/* ── Navbar ─────────────────────────────────────────────────────────────────── */
-function Navbar(){
-  const [open,setOpen]=useState(false);
-  const [scrolled,setScrolled]=useState(false);
-  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>50);window.addEventListener("scroll",fn);return()=>window.removeEventListener("scroll",fn);},[]);
-  return(<>
-    <SideNav open={open} onClose={()=>setOpen(false)}/>
-    <header style={{position:"fixed",top:0,left:0,right:0,zIndex:100,transition:"all 0.4s ease",background:scrolled?"rgba(255,255,255,0.97)":"transparent",backdropFilter:scrolled?"blur(10px)":"none",boxShadow:scrolled?"0 1px 0 #e8e6e3":"none",padding:scrolled?"0.7rem 0":"clamp(0.8rem,2vw,1.2rem) 0"}}>
-      <div style={{maxWidth:1280,margin:"0 auto",padding:"0 clamp(1rem,2vw,2rem)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"0.5rem"}}>
-        <a href="/granada-international" style={{textDecoration:"none",display:"flex",alignItems:"center"}}>
-          <Image src={scrolled?"/g-international.svg":"/g-international-dark.svg"} alt="Granada International" width={110} height={44} style={{height:"auto",width:"clamp(50px,8vw,110px)"}} priority/>
-        </a>
-        <div style={{display:"flex",alignItems:"center",gap:"clamp(1rem,2vw,1.5rem)",flexWrap:"wrap",justifyContent:"flex-end",flex:1}}>
-          <div style={{display:"none",gap:"clamp(0.75rem,1.5vw,1.25rem)",alignItems:"center"}} className="nav-quick">
-            {[{l:"Parents",h:"/granada-international#contact"},{l:"Enquire",h:"/granada-international/contact"}].map(({l,h})=>(
-              <a key={l} href={h} style={{color:scrolled?"var(--muted)":"rgba(255,255,255,0.85)",textDecoration:"none",fontSize:"clamp(0.6rem,1.2vw,0.68rem)",letterSpacing:"0.1em",textTransform:"uppercase",fontWeight:500,transition:"color 0.2s",whiteSpace:"nowrap"}}
-                onMouseEnter={e=>(e.currentTarget.style.color="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.color=scrolled?"var(--muted)":"rgba(255,255,255,0.85)")}>{l}</a>
-            ))}
-            <a href="/granada-international/admissions#apply" className="btn-green" style={{fontSize:"clamp(0.6rem,1.2vw,0.62rem)",padding:"clamp(0.4rem,0.8vw,0.5rem) clamp(0.8rem,1.5vw,1.2rem)"}}>Apply Now</a>
-          </div>
-          <button onClick={()=>setOpen(true)} aria-label="Open menu"
-            style={{background:"none",border:`1px solid ${scrolled?"rgba(33,53,88,0.35)":"rgba(255,255,255,0.5)"}`,cursor:"pointer",display:"flex",flexDirection:"column",gap:5,padding:"0.5rem 0.6rem",transition:"border-color 0.3s",flexShrink:0}}
-            onMouseEnter={e=>(e.currentTarget.style.borderColor="var(--primary)")} onMouseLeave={e=>(e.currentTarget.style.borderColor=scrolled?"rgba(33,53,88,0.35)":"rgba(255,255,255,0.5)")}>
-            <span style={{width:21,height:1.5,background:scrolled?"var(--primary)":"#fff",display:"block",transition:"background 0.4s"}}/>
-            <span style={{width:21,height:1.5,background:scrolled?"var(--primary)":"#fff",display:"block",transition:"background 0.4s"}}/>
-            <span style={{width:13,height:1.5,background:"var(--secondary)",display:"block"}}/>
-          </button>
-          <style>{`@media(min-width:768px){.nav-quick{display:flex!important}}`}</style>
-        </div>
-      </div>
-    </header>
-  </>);
-}
-
-/* ── useInView ─────────────────────────────────────────────────────────────── */
 function useInView(threshold=0.12){
   const ref=useRef<HTMLDivElement>(null);
   const [vis,setVis]=useState(false);
@@ -215,20 +107,8 @@ function Hero(){
   return(
     <section style={{position:"relative",minHeight:"clamp(340px,50vh,480px)",overflow:"hidden",display:"flex",alignItems:"flex-end"}}>
       <div style={{position:"absolute",inset:0,backgroundImage:"url(/class.jpeg)",backgroundSize:"cover",backgroundPosition:"center"}}/>
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(135deg,rgba(33,53,88,0.92) 0%,rgba(33,53,88,0.6) 50%,rgba(13,12,13,0.5) 100%)"}}/>
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(13,12,13,0.55) 0%,transparent 45%)"}}/>
       <div style={{position:"relative",zIndex:5,maxWidth:1280,margin:"0 auto",padding:"0 clamp(1rem,2vw,2rem)",paddingTop:"clamp(140px,16vw,165px)",paddingBottom:"clamp(2.5rem,5vw,4rem)",width:"100%"}}>
-        <div style={{display:"flex",alignItems:"center",gap:"0.5rem",marginBottom:"clamp(0.6rem,1vw,1rem)",opacity:loaded?1:0,transform:loaded?"translateY(0)":"translateY(14px)",transition:"all 0.7s ease 0.2s",flexWrap:"wrap"}}>
-          {[{label:"Granada",href:"/"},{label:"International",href:"/granada-international"}].map((bc,i)=>(
-            <span key={i} style={{display:"flex",alignItems:"center",gap:"0.45rem"}}>
-              <a href={bc.href} style={{color:"rgba(255,255,255,0.55)",textDecoration:"none",fontSize:"clamp(0.58rem,0.9vw,0.66rem)",letterSpacing:"0.12em",textTransform:"uppercase",transition:"color 0.2s"}}
-                onMouseEnter={e=>(e.currentTarget.style.color="#fff")} onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.55)")}>{bc.label}</a>
-              <span style={{color:"var(--secondary)",fontSize:"clamp(0.65rem,0.9vw,0.72rem)"}}>›</span>
-            </span>
-          ))}
-          <span style={{color:"#fff",fontSize:"clamp(0.58rem,0.9vw,0.66rem)",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600}}>Contact</span>
-        </div>
-        <p style={{color:"var(--secondary)",textTransform:"uppercase",letterSpacing:"0.28em",fontSize:"clamp(0.55rem,0.85vw,0.62rem)",fontWeight:700,marginBottom:"clamp(0.4rem,0.8vw,0.6rem)",opacity:loaded?1:0,transition:"opacity 0.7s ease 0.3s"}}>Get in Touch</p>
+
         <h1 className="font-display" style={{fontSize:"clamp(2.2rem,5.5vw,4.2rem)",fontWeight:600,lineHeight:1.05,color:"#fff",marginBottom:"0.5rem",opacity:loaded?1:0,transform:loaded?"translateY(0)":"translateY(22px)",transition:"all 0.8s ease 0.4s"}}>
           Contact <span style={{color:"var(--accent-light)"}}>Granada International</span>
         </h1>
@@ -274,7 +154,7 @@ function ContactInfo(){
           <div style={{opacity:vis?1:0,transform:vis?"none":"translateY(20px)",transition:"all 0.9s ease 0.15s",minHeight:"clamp(260px,30vw,380px)",position:"relative",overflow:"hidden",border:"1px solid rgba(0,0,0,0.06)"}}>
             <iframe
               title="Granada International Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15954.5!2d39.78!3d-3.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwNDknMTIuMCJTIDM5wrA0Nic0OC4wIkU!5e0!3m2!1sen!2ske!4v1"
+              src="https://maps.google.com/maps?q=Vipingo,+Kilifi+County,+Kenya&t=&z=14&ie=UTF8&iwloc=&output=embed"
               style={{border:0,width:"100%",height:"100%",position:"absolute",inset:0}}
               allowFullScreen
               loading="lazy"
@@ -397,57 +277,17 @@ function EnquiryForm(){
   );
 }
 
-/* ── FOOTER ────────────────────────────────────────────────────────────────── */
-function Footer(){
-  return(
-    <footer style={{background:"var(--dark)",padding:"clamp(2.5rem,5vw,4rem) clamp(1rem,2vw,2rem) clamp(1.2rem,2vw,1.8rem)"}}>
-      <div style={{maxWidth:1280,margin:"0 auto"}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:"clamp(2rem,4vw,3rem)",marginBottom:"clamp(2rem,3vw,3rem)"}}>
-          <div style={{minWidth:200}}>
-            <Image src="/g-international-dark.svg" alt="Granada International" width={100} height={40} style={{height:"auto",width:"clamp(60px,8vw,100px)",marginBottom:"1rem"}}/>
-            <p style={{color:"rgba(255,255,255,0.55)",fontSize:"clamp(0.72rem,0.88vw,0.8rem)",lineHeight:1.7,maxWidth:280}}>Forward Thinking. Inspiring Excellence. Shaping the Future.</p>
-          </div>
-          <div style={{display:"flex",gap:"clamp(2rem,4vw,4rem)",flexWrap:"wrap"}}>
-            <div>
-              <p style={{color:"var(--secondary)",fontSize:"clamp(0.55rem,0.78vw,0.62rem)",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:"0.8rem"}}>Quick Links</p>
-              {[{l:"About",h:"/granada-international/about"},{l:"Admissions",h:"/granada-international/admissions"},{l:"Academics",h:"/granada-international/academics"},{l:"Campus Life",h:"/granada-international/campus-life"},{l:"Contact",h:"/granada-international/contact"}].map(({l,h})=>(
-                <a key={l} href={h} style={{display:"block",color:"rgba(255,255,255,0.6)",textDecoration:"none",fontSize:"clamp(0.72rem,0.88vw,0.8rem)",padding:"0.25rem 0",transition:"color 0.2s"}}
-                  onMouseEnter={e=>(e.currentTarget.style.color="#fff")} onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.6)")}>{l}</a>
-              ))}
-            </div>
-            <div>
-              <p style={{color:"var(--secondary)",fontSize:"clamp(0.55rem,0.78vw,0.62rem)",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:"0.8rem"}}>Contact</p>
-              <p style={{color:"rgba(255,255,255,0.6)",fontSize:"clamp(0.72rem,0.88vw,0.8rem)",lineHeight:1.8}}>
-                +254 714 848 289<br/>+254 717 682 138<br/>admissions@granadaschools.group<br/>Vipingo, Kilifi County, Kenya
-              </p>
-            </div>
-          </div>
-        </div>
-        <div style={{borderTop:"1px solid rgba(255,255,255,0.1)",paddingTop:"clamp(1rem,1.5vw,1.5rem)",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"0.5rem"}}>
-          <p style={{color:"rgba(255,255,255,0.35)",fontSize:"clamp(0.62rem,0.78vw,0.7rem)"}}>© {new Date().getFullYear()} Granada International School. All rights reserved.</p>
-          <div style={{display:"flex",gap:"0.5rem"}}>
-            {["F","X","I","L","Y"].map(k=>(
-              <a key={k} href="#" style={{width:24,height:24,border:"1px solid rgba(255,255,255,0.25)",display:"flex",alignItems:"center",justifyContent:"center",color:"rgba(255,255,255,0.5)",fontSize:"0.5rem",fontWeight:700,textDecoration:"none",transition:"all 0.2s"}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--secondary)";e.currentTarget.style.color="var(--secondary)";}} onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,0.25)";e.currentTarget.style.color="rgba(255,255,255,0.5)";}}>{k}</a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 /* ── PAGE EXPORT ───────────────────────────────────────────────────────────── */
 export default function ContactPage(){
   return(
     <>
-      <Navbar/>
+      <SchoolNavbar scrolledLogo="/g-international.svg" clearLogo="/g-international-dark.svg" logoAlt="Granada International" logoHref="/granada-international" navItems={NAV_ITEMS} quickLinks={[{label:"Parents",href:"/granada-international#contact"},{label:"Enquire",href:"/granada-international/contact"},{label:"Contact us",href:"/granada-international/contact"}]} enquireHref="/granada-international/contact" applyHref="/granada-international/contact" headerApplyHref="/granada-international#admissions" sideImage="/building.jpeg" sideImageAlt="Granada International"/>
       <main style={{background:"var(--body-bg)"}}>
         <Hero/>
         <ContactInfo/>
         <Suspense fallback={null}><EnquiryForm/></Suspense>
       </main>
-      <Footer/>
+      <SchoolFooter logoSrc="/g-international-dark.svg" logoAlt="Granada International" logoHref="/granada-international" tagline="Forward Thinking. Inspiring Excellence. Shaping the Future." schoolName="Granada International" curriculumLinks={["Pearson Edexcel","Key Stages 1\u20135","IGCSE","A-Levels","Results","University Pathways"]} footerColsClass="int-footer-cols"/>
     </>
   );
 }
