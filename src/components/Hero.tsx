@@ -524,7 +524,7 @@ export default function Hero() {
               >
                 Granada International
               </Link>
-              <p style={{ fontSize: '0.72rem', color: '#e2c215', fontFamily: 'sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0 }}>Edexcel Curriculum</p>
+              <p style={{ fontSize: '0.72rem', color: '#e2c215', fontFamily: 'sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0 }}>Edexcel & Cambridge Curriculums</p>
             </div>
           </div>
 
