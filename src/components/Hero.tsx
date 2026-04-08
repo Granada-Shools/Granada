@@ -22,7 +22,7 @@ const values = [
     desc: 'We promote empathy, compassion, and genuine respect for every person within and beyond the school community. Kindness shapes our classroom culture and the character of every graduate.',
   },
   {
-    label: 'Honesty', color: '#e2c215', textColor: '#ffffff', rgb: '231,155,11', image: '/child-blue.png',
+    label: 'Honesty', color: '#e79b0b', textColor: '#ffffff', rgb: '231,155,11', image: '/child-blue.png',
     tagline: 'Integrity Always',
     desc: 'We uphold integrity, accountability, and ethical behaviour in every aspect of school life. We believe trust is earned through honesty — and honest people build honest communities.',
   },

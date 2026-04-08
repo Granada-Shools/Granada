@@ -90,8 +90,8 @@ export default function SchoolNavbar({
             <Image
               src={scrolled ? scrolledLogo : clearLogo}
               alt={logoAlt}
-              width={110}
-              height={44}
+              width={120}
+              height={54}
               style={{ height: 'auto', width: 'clamp(50px,8vw,110px)' }}
               priority
             />

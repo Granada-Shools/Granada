@@ -748,7 +748,7 @@ function CoreValues() {
   const values = [
     {
       title: 'Resilience',
-      icon: '🌱',
+      icon: '/resilience.svg',
       color: 'var(--primary)',
       tagline: 'Grow Through Challenge',
       desc: 'We encourage learners to persevere, overcome obstacles, and emerge stronger from every experience. Resilience is the foundation that allows students to face uncertainty with confidence and adapt with grace.',
@@ -760,7 +760,7 @@ function CoreValues() {
     },
     {
       title: 'Curiosity',
-      icon: '🔭',
+      icon: '/curioisty.svg',
       color: 'var(--secondary)',
       tagline: 'Love of Learning',
       desc: 'We foster a deep love for learning, creativity, and the fearless exploration of new ideas. At Granada, questions are always welcome — curiosity drives discovery, innovation, and lifelong learning.',
@@ -772,7 +772,7 @@ function CoreValues() {
     },
     {
       title: 'Kindness',
-      icon: '🤝',
+      icon: '/kindness.svg',
       color: 'var(--accent-warm)',
       tagline: 'Empathy in Action',
       desc: 'We promote empathy, compassion, and genuine respect for every person within and beyond the school community. Kindness shapes our classroom culture and the character of every graduate.',
@@ -784,7 +784,7 @@ function CoreValues() {
     },
     {
       title: 'Honesty',
-      icon: '⚖️',
+      icon: '/honesty.svg',
       color: 'var(--accent-green)',
       tagline: 'Integrity Always',
       desc: 'We uphold integrity, accountability, and ethical behaviour in every aspect of school life. We believe trust is earned through honesty — and honest people build honest communities.',
@@ -796,7 +796,7 @@ function CoreValues() {
     },
     {
       title: 'Respect',
-      icon: '🌍',
+      icon: '/respect.svg',
       color: 'var(--accent-blue)',
       tagline: 'Valuing Every Voice',
       desc: 'We celebrate diversity, nurture positive relationships, and create a supportive environment where every individual is seen and valued. Respect connects our community across backgrounds and aspirations.',
@@ -883,15 +883,13 @@ function CoreValues() {
                   opacity: 0.07,
                 }}
               />
-              <span
-                style={{
-                  fontSize: 'clamp(1.2rem,2vw,1.5rem)',
-                  display: 'block',
-                  marginBottom: 'clamp(0.5rem,0.8vw,0.85rem)',
-                }}
-              >
-                {v.icon}
-              </span>
+              <Image
+                src={v.icon}
+                alt={v.title}
+                width={40}
+                height={40}
+                style={{ display: 'block', marginBottom: 'clamp(0.5rem,0.8vw,0.85rem)', width: 'clamp(1.5rem,2.5vw,2.5rem)', height: 'auto' }}
+              />
               <h3
                 style={{
                   fontSize: 'clamp(0.65rem,0.8vw,0.82rem)',
