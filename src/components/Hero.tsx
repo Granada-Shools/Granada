@@ -505,7 +505,7 @@ export default function Hero() {
           </div>
 
           {/* Nav links */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem clamp(2rem,5vw,3.5rem)' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: '2rem clamp(2rem,5vw,3.5rem)' }}>
             <h1
                 style={{
                   marginBottom: '0.9rem',
