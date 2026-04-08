@@ -307,8 +307,8 @@ export default function SchoolSideNav({
                 >
                   <span
                     style={{
-                      fontSize: 'clamp(1.25rem,1.2vw,0.8rem)',
-                      fontWeight: active === i ? 700 : 400,
+                      fontSize: 'clamp(1.1rem,1.3vw,1.5rem)',
+                      fontWeight: 700,
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
                       color: active === i ? S : '#fff',
