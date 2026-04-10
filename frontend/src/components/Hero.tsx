@@ -933,7 +933,7 @@ export default function Hero() {
               <h1
                 style={{
                   flex: 1,
-                  fontSize: 'clamp(2rem, 1.6vw, 4rem)',
+                  fontSize: 'clamp(2.9rem, 1.6vw, 4rem)',
                   fontWeight: 900,
                   lineHeight: '1.15',
                   color: 'white',
@@ -956,7 +956,7 @@ export default function Hero() {
             <div
               className="flex flex-col md:flex-row items-stretch"
               style={{
-                paddingTop: '7rem',
+                paddingTop: '2rem',
                 flex: 1,
                 minHeight: 25,
                 gap: '1.25rem',
@@ -964,8 +964,8 @@ export default function Hero() {
             >
               {/* CBE Pathway card */}
               <Card
-                className="relative w-full pt-0 flex flex-col justify-center gap-1"
-                style={{ background: '#e2c215', maxHeight: '18vh' }}
+                className="relative w-full pt-0 flex flex-col justify-start gap-1"
+                style={{ background: '#e2c215', maxHeight: '27vh' }}
               >
                 <div className="absolute inset-0 z-30 aspect-video" />
 
@@ -997,7 +997,7 @@ export default function Hero() {
                   </CardDescription>
                 </CardHeader>
 
-                <CardFooter>
+                <CardFooter >
                   <Button
                     className="w-full"
                     style={{ backgroundColor: '#0b1b3b', color: '#e2c215' }}
@@ -1014,8 +1014,8 @@ export default function Hero() {
 
               {/* International Pathway card */}
               <Card
-                className="relative w-full pt-0 flex flex-col justify-center gap-1"
-                style={{ background: '#A6D6C9', maxHeight: '18vh' }}
+                className="relative w-full pt-0 flex flex-col justify-start gap-1"
+                style={{ background: '#A6D6C9', maxHeight: '26vh' }}
               >
                 <div className="absolute inset-0 z-30 aspect-video" />
 
