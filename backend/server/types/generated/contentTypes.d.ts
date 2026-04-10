@@ -467,6 +467,47 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHeroValueHeroValue extends Struct.CollectionTypeSchema {
+  collectionName: 'hero_values';
+  info: {
+    displayName: 'Hero Value';
+    pluralName: 'hero-values';
+    singularName: 'hero-value';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hero-value.hero-value'
+    > &
+      Schema.Attribute.Private;
+    newsDate: Schema.Attribute.Date;
+    newsHeadline: Schema.Attribute.String;
+    newsHref: Schema.Attribute.String;
+    newsPhoto: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    Tag: Schema.Attribute.String;
+    txtColor: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Value: Schema.Attribute.String;
+    videoDate: Schema.Attribute.Date;
+    videoId: Schema.Attribute.String;
+    videoTitle: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -979,6 +1020,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::hero-value.hero-value': ApiHeroValueHeroValue;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

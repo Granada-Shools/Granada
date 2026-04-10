@@ -957,14 +957,14 @@ export default function Hero() {
               className="flex flex-col md:flex-row items-stretch"
               style={{
                 flex: 1,
-                minHeight: 0,
+                minHeight: 25,
                 gap: '1.25rem',
               }}
             >
               {/* CBE Pathway card */}
               <Card
-                className="relative w-full pt-0 flex flex-col justify-between"
-                style={{ background: '#e2c215' }}
+                className="relative w-full pt-0 flex flex-col justify-center"
+                style={{ background: '#e2c215', maxHeight: '40vh' }}
               >
                 <div className="absolute inset-0 z-30 aspect-video" />
 
@@ -1014,7 +1014,7 @@ export default function Hero() {
               {/* International Pathway card */}
               <Card
                 className="relative w-full pt-0 flex flex-col justify-between"
-                style={{ background: '#A6D6C9' }}
+                style={{ background: '#A6D6C9', maxHeight: '40vh' }}
               >
                 <div className="absolute inset-0 z-30 aspect-video" />
 
