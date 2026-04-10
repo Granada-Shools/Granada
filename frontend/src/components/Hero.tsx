@@ -933,7 +933,7 @@ export default function Hero() {
               <h1
                 style={{
                   flex: 1,
-                  fontSize: 'clamp(3.5rem, 1.6vw, 4rem)',
+                  fontSize: 'clamp(2.5rem, 1.6vw, 4rem)',
                   fontWeight: 900,
                   lineHeight: '1.15',
                   color: 'white',
