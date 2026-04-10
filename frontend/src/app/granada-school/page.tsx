@@ -189,7 +189,7 @@ function Hero() {
           position: 'absolute',
           inset: 0,
           background:
-            'linear-gradient(105deg, rgba(13,12,13,0.75) 0%, rgba(13,12,13,0.38) 58%, transparent 100%)',
+            'linear-gradient(105deg, rgba(13,12,13,0.75) 0%, rgba(13,12,13,0.38) 18%, transparent 100%)',
           zIndex: 2,
           pointerEvents: 'none',
         }}
@@ -208,8 +208,8 @@ function Hero() {
       >
         <div
           style={{
-            maxWidth: 'clamp(300px,52vw,620px)',
-            textAlign: 'center',
+            maxWidth: 'clamp(1400px,52vw,620px)',
+            textAlign: 'start',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'none' : 'translateY(20px)',
             transition: 'all 1s ease 0.2s',
@@ -223,6 +223,7 @@ function Hero() {
               color: 'var(--secondary)',
               fontWeight: 700,
               marginBottom: '1rem',
+              marginTop: '4.5rem',
               fontFamily: 'sans-serif',
             }}
           >
@@ -247,28 +248,15 @@ function Hero() {
               meant to be.
             </em>
           </h1>
-          <div
+          {/* <div
             style={{
-              width: 40,
+              width: 50,
               height: 2,
               background: 'var(--secondary)',
               margin: '1.25rem auto',
             }}
-          />
-          <p
-            style={{
-              fontSize: 'clamp(0.82rem,1.1vw,0.98rem)',
-              lineHeight: 1.8,
-              color: 'rgba(255,255,255,0.88)',
-              maxWidth: '44ch',
-              margin: '0 auto',
-              fontFamily: 'sans-serif',
-            }}
-          >
-            An academically exceptional boarding community — rooted in
-            character, curiosity, and the belief that every learner has
-            unlimited potential.
-          </p>
+          /> */}
+          
         </div>
       </div>
     </section>
@@ -527,7 +515,7 @@ function Curriculum() {
           <p
             className="body-text"
             style={{
-              maxWidth: 540,
+              maxWidth: 1240,
               margin: 'clamp(0.8rem,1.5vw,1.25rem) auto 0',
             }}
           >

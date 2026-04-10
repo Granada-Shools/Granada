@@ -750,8 +750,7 @@ function WhyChoose() {
           </h2>
           <div className="divider" style={{ margin: '1.25rem auto' }} />
           <p className="body-text">
-            Everything we do is intentionally designed to nurture every
-            learner's full potential — academically, socially, and spiritually.
+            Everything we do is intentionally designed to nurture every learner's full potential — academically, socially, and spiritually.
           </p>
         </div>
 
