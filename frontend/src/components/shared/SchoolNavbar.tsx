@@ -68,9 +68,8 @@ export default function SchoolNavbar({
       >
         <div
           style={{
-            maxWidth: 1280,
-            margin: '0 auto',
-            padding: '0 clamp(1rem,2vw,2rem)',
+            width: '100%',
+            padding: '0 clamp(1rem,3vw,2.5rem)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
