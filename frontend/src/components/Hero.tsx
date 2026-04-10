@@ -933,7 +933,7 @@ export default function Hero() {
               <h1
                 style={{
                   flex: 1,
-                  fontSize: 'clamp(4em, 1.6vw, 4rem)',
+                  fontSize: 'clamp(3.5rem, 1.6vw, 4rem)',
                   fontWeight: 900,
                   lineHeight: '1.15',
                   color: 'white',
@@ -964,13 +964,13 @@ export default function Hero() {
             >
               {/* CBE Pathway card */}
               <Card
-                className="relative w-full pt-0 flex flex-col justify-center"
-                style={{ background: '#e2c215', maxHeight: '20vh' }}
+                className="relative w-full pt-0 flex flex-col justify-center gap-1"
+                style={{ background: '#e2c215', maxHeight: '18vh' }}
               >
                 <div className="absolute inset-0 z-30 aspect-video" />
 
                 <CardHeader
-                  className="pt-3 grow"
+                  className="pt-3 grow gap-0"
                   style={{ background: '#e2c215' }}
                 >
                   <CardTitle
@@ -985,9 +985,9 @@ export default function Hero() {
 
                   <CardDescription
                     style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.85rem',
                       color: '#0b1b3b',
-                      opacity: 0.75,
+                      opacity: 0.95,
                       lineHeight: 1.5,
                     }}
                   >
@@ -1014,13 +1014,13 @@ export default function Hero() {
 
               {/* International Pathway card */}
               <Card
-                className="relative w-full pt-0 flex flex-col justify-center"
-                style={{ background: '#A6D6C9', maxHeight: '20vh' }}
+                className="relative w-full pt-0 flex flex-col justify-center gap-1"
+                style={{ background: '#A6D6C9', maxHeight: '18vh' }}
               >
                 <div className="absolute inset-0 z-30 aspect-video" />
 
                 <CardHeader
-                  className="pt-3 flex-grow"
+                  className="pt-3 grow gap-0"
                   style={{ background: '#A6D6C9' }}
                 >
                   <CardTitle
@@ -1035,7 +1035,7 @@ export default function Hero() {
 
                   <CardDescription
                     style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.85rem',
                       color: '#0b1b3b',
                       opacity: 0.75,
                       lineHeight: 1.5,
