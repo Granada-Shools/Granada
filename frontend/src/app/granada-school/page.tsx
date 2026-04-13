@@ -163,6 +163,8 @@ function Hero() {
   const [active, setActive] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [mobileCol, setMobileCol] = useState<1 | 2>(1);
+  const [col2Ready, setCol2Ready] = useState(false);
+  const col2TimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setLoaded(true);
@@ -170,14 +172,23 @@ function Hero() {
     return () => clearInterval(t);
   }, []);
 
+  useEffect(() => {
+  return () => {
+    if (col2TimerRef.current) clearTimeout(col2TimerRef.current);
+  };
+}, []);
+
   const handleNavClick = (idx: number) => {
   if (selectedIdx === idx) {
     prevIdxRef.current = idx;
     setSelectedIdx(null);
     setDisplayIdx(null);
     setMobileCol(1);
+    setCol2Ready(false);
+    if (col2TimerRef.current) clearTimeout(col2TimerRef.current);
   } else {
     prevIdxRef.current = selectedIdx;
+    const isFirstOpen = selectedIdx === null;
     setPrevDisplayIdx(displayIdx);       // hold outgoing content
     setIsAnimating(true);
     setSelectedIdx(idx);
@@ -190,6 +201,15 @@ function Hero() {
       setPrevDisplayIdx(null);
       setIsAnimating(false);
     }, 320);
+
+    if (isFirstOpen) {
+      // wait for width transition before animating content in
+      setCol2Ready(false);
+      col2TimerRef.current = setTimeout(() => setCol2Ready(true), 800);
+    } else {
+      // col2 already open, animate content immediately
+      setCol2Ready(true);
+    }
   }
 };
 
@@ -470,11 +490,12 @@ function Hero() {
         overflowY: 'auto',             // ← individually scrollable
         padding: 'clamp(0.9rem,1.5vw,1.4rem)',
         display: 'flex', flexDirection: 'column', gap: 10,
-        animation: `${
-          prevIdxRef.current === null || prevIdxRef.current < displayIdx
-            ? 'col2SlideIn'
-            : 'col2SlideInBack'
-        } 3s cubic-bezier(0.22, 1, 0.36, 1) both`,
+        opacity: col2Ready ? 1 : 0,
+        animation: col2Ready ? `${
+      prevIdxRef.current === null || prevIdxRef.current < displayIdx
+        ? 'col2SlideIn' : 'col2SlideInBack'
+    } 0.35s cubic-bezier(0.22, 1, 0.36, 1) both` : 'none',
+          
       }}
     >
       {navItems[displayIdx]?.children?.map((child) => (
