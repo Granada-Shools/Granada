@@ -363,7 +363,7 @@ function Hero() {
                   }}
                   onClick={() => handleNavClick(idx)}
                   animate={{
-                    x: active ? 18 : hovered ? 8 : 0,
+                    x: active ? 18 : hovered ? 4 : 0,
                   }}
                   transition={{ type: 'spring', stiffness: 260, damping: 22 }}
                   style={{
@@ -404,37 +404,43 @@ function Hero() {
                     />
                   </span>
 
-                  {/* ARROW (UNCHANGED LOOK) */}
-                  <svg
-                    width="44"
-                    height="9"
-                    viewBox="0 0 44 9"
-                    fill="none"
-                    style={{
-                      flexShrink: 0,
-                      opacity: 1,
-                      transition: 'opacity 0.2s',
-                    }}
-                  >
-                    {/* Shaft */}
-                    <line
-                      x1="0"
-                      y1="4.5"
-                      x2="38"
-                      y2="4.5"
-                      stroke={selectedIdx === idx ? '#e2c215' : '#fff'}
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    {/* Arrowhead */}
-                    <path
-                      d="M34 1l4 3.5L34 8"
-                      stroke={selectedIdx === idx ? '#e2c215' : '#fff'}
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+
+<div
+  style={{
+    width: 28,
+    height: 28,
+    borderRadius: "50%",
+    background: active ? "#e2c215" : "#ffffff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    position: "relative",
+  }}
+>
+  {/* horizontal line (always visible) */}
+  <div
+    style={{
+      width: 12,
+      height: 2,
+      background: "#0b1b3b",
+      borderRadius: 2,
+    }}
+  />
+
+  {/* vertical line = ONLY when NOT active (plus sign) */}
+  {!active && (
+    <div
+      style={{
+        position: "absolute",
+        width: 2,
+        height: 12,
+        background: "#0b1b3b",
+        borderRadius: 2,
+      }}
+    />
+  )}
+</div>
                 </motion.button>
               );
             })}
