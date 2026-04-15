@@ -59,7 +59,7 @@
   --hero-h1-size: clamp(1.1rem, 2.2vw, 2.8rem);
   --hero-card-title-size: clamp(0.65rem, 1vw, 1.2rem);
   --hero-card-desc-size: clamp(0.59rem, 0.6vw, 0.95rem);
-  --hero-card-max-height: 32vh;
+  --hero-card-max-height: 34vh;
   --hero-card-cbe-max-height: 34vh;
   --hero-h1-margin-bottom: clamp(0.1rem, 0.5vh, 1.25rem);
 }

@@ -311,6 +311,16 @@ function PageHero() {
         style={{
           position: 'absolute',
           inset: 0,
+          background:
+            'linear-gradient(95deg, rgba(13,12,13,0.85) 0%, rgba(13,12,13,0.38) 45%, transparent 100%)',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
           backgroundImage: 'url(/sports2.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -1152,7 +1162,7 @@ function PageCTA() {
           {[
             { l: 'Enquire', h: '/granada-school/contact' },
             { l: 'Visit Granada', h: '/granada-school/contact?type=visit' },
-            { l: 'Apply Now', h: '/granada-school/contact?type=admissions' },
+            { l: 'Apply Now', h: '/granada-school/admissions/apply' },
           ].map(({ l, h }) => (
             <a
               key={l}
@@ -1212,7 +1222,7 @@ export default function WellbeingPage() {
           { label: 'Contact us', href: '/granada-school/contact' },
         ]}
         enquireHref="/granada-school/contact"
-        applyHref="/granada-school/contact?type=admissions"
+        applyHref="/granada-school/admissions/apply"
         sideImage="/building.jpeg"
         sideImageAlt="Granada School"
       />

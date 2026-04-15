@@ -135,11 +135,23 @@ const NAV_ITEMS = [
 ];
 
 const containerVariants = {
-  hidden: {},
+  hidden: {
+    opacity: 0,
+    x: 30,
+  },
   show: {
+    opacity: 1,
+    x: 0,
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.08,
+      duration: 0.95,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: -30,
+    transition: {
+      duration: 0.4,
     },
   },
 };
@@ -271,7 +283,7 @@ function Hero() {
         />
       ))}
 
-      {/* --- OVERLAY (UNCHANGED) --- */}
+      {/* --- OVERLAY  --- */}
       <div
         style={{
           position: 'absolute',
@@ -283,7 +295,7 @@ function Hero() {
         }}
       />
 
-      {/* --- LOGO (UNCHANGED) --- */}
+      {/* --- LOGO --- */}
       <div
         style={{
           position: 'absolute',
@@ -363,7 +375,7 @@ function Hero() {
                   }}
                   onClick={() => handleNavClick(idx)}
                   animate={{
-                    x: active ? 18 : hovered ? 4 : 0,
+                    x: active ? 28 : hovered ? 5 : 0,
                   }}
                   transition={{ type: 'spring', stiffness: 260, damping: 22 }}
                   style={{
@@ -404,43 +416,56 @@ function Hero() {
                     />
                   </span>
 
-
-<div
-  style={{
-    width: 28,
-    height: 28,
-    borderRadius: "50%",
-    background: active ? "#e2c215" : "#ffffff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-    position: "relative",
-  }}
->
-  {/* horizontal line (always visible) */}
-  <div
-    style={{
-      width: 12,
-      height: 2,
-      background: "#0b1b3b",
-      borderRadius: 2,
+                  <motion.svg width="24" height="24" viewBox="0 0 28 28">
+  {/* circle */}
+  <motion.circle
+    cx="14"
+    cy="14"
+    r="12"
+    animate={{
+      fill: selectedIdx === idx ? "#e2c215" : "#ffffff",
     }}
+    transition={{ duration: 0.2 }}
   />
 
-  {/* vertical line = ONLY when NOT active (plus sign) */}
-  {!active && (
-    <div
-      style={{
-        position: "absolute",
-        width: 2,
-        height: 12,
-        background: "#0b1b3b",
-        borderRadius: 2,
-      }}
-    />
-  )}
-</div>
+  {/* LINE 1 */}
+  <motion.line
+    x1="8.5"
+    y1="14"
+    x2="19.5"
+    y2="14"
+    stroke="#0b1b3b"
+    strokeWidth="2"
+    strokeLinecap="round"
+    animate={{
+      rotate: selectedIdx === idx ? 45 : 0,
+    }}
+    style={{
+      originX: "50%",
+      originY: "50%",
+    }}
+    transition={{ duration: 0.25 }}
+  />
+
+  {/* LINE 2 */}
+  <motion.line
+    x1="14"
+    y1="8.5"
+    x2="14"
+    y2="19.5"
+    stroke="#0b1b3b"
+    strokeWidth="2"
+    strokeLinecap="round"
+    animate={{
+      rotate: selectedIdx === idx ? 45 : 0,
+    }}
+    style={{
+      originX: "50%",
+      originY: "50%",
+    }}
+    transition={{ duration: 0.25 }}
+  />
+</motion.svg>
                 </motion.button>
               );
             })}
@@ -474,7 +499,7 @@ function Hero() {
                 <motion.div
                   key={displayIdx}
                   custom={getDirection(displayIdx)}
-                  variants={childVariants}
+                  variants={containerVariants}
                   initial="hidden"
                   animate="show"
                   exit="exit"
@@ -529,7 +554,6 @@ function Hero() {
                     <motion.a
                       key={child.label}
                       href={child.href}
-                      variants={itemVariants}
                       style={{
                         padding: '0.6rem 1rem',
                         color: '#fff',
@@ -604,7 +628,7 @@ function Hero() {
                       style={{ position: 'relative', display: 'inline-block' }}
                     >
                       {item.label}
-                      <motion.span
+                      {/* <motion.span
                         layoutId="underline"
                         style={{
                           position: 'absolute',
@@ -617,40 +641,46 @@ function Hero() {
                         }}
                         initial={false}
                         animate={{ scaleX: active ? 1 : 0 }}
-                      />
+                      /> */}
                     </span>
 
-                    {/* ARROW (UNCHANGED LOOK) */}
-                    <svg
-                      width="44"
-                      height="9"
-                      viewBox="0 0 44 9"
-                      fill="none"
-                      style={{
-                        flexShrink: 0,
-                        opacity: 1,
-                        transition: 'opacity 0.2s',
-                      }}
-                    >
-                      {/* Shaft */}
-                      <line
-                        x1="0"
-                        y1="4.5"
-                        x2="38"
-                        y2="4.5"
-                        stroke={selectedIdx === idx ? '#e2c215' : '#fff'}
-                        strokeWidth="1.5"
+                    <motion.svg width="24" height="24" viewBox="0 0 28 28">
+                      <motion.circle
+                        cx="14"
+                        cy="14"
+                        r="12"
+                        animate={{
+                          fill: selectedIdx === idx ? '#e2c215' : '#ffffff',
+                        }}
+                        transition={{ duration: 0.25 }}
+                      />
+
+                      <motion.line
+                        x1="9"
+                        y1="14"
+                        x2="19"
+                        y2="14"
+                        stroke="#0b1b3b"
+                        strokeWidth="2"
                         strokeLinecap="round"
                       />
-                      {/* Arrowhead */}
-                      <path
-                        d="M34 1l4 3.5L34 8"
-                        stroke={selectedIdx === idx ? '#e2c215' : '#fff'}
-                        strokeWidth="1.5"
+
+                      <motion.line
+                        x1="14"
+                        y1="9"
+                        x2="14"
+                        y2="19"
+                        stroke="#0b1b3b"
+                        strokeWidth="2"
                         strokeLinecap="round"
-                        strokeLinejoin="round"
+                        animate={{
+                          opacity: selectedIdx === idx ? 0 : 1,
+                          rotate: selectedIdx === idx ? 90 : 0,
+                        }}
+                        style={{ originX: '50%', originY: '50%' }}
+                        transition={{ duration: 0.25 }}
                       />
-                    </svg>
+                    </motion.svg>
                   </motion.button>
                 ))}
               </motion.div>
@@ -1490,7 +1520,7 @@ export default function Home() {
           { label: 'Contact us', href: '/granada-school/contact' },
         ]}
         enquireHref="/granada-school/contact"
-        applyHref="/granada-school/contact?type=admissions"
+        applyHref="/granada-school/admissions/apply"
         sideImage="/building.jpeg"
         sideImageAlt="Granada School"
       /> */}

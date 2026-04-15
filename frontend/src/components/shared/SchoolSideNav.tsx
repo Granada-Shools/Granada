@@ -58,17 +58,8 @@ export default function SchoolSideNav({
   const [active, setActive] = useState(0);
   const [search, setSearch] = useState('');
   const [sf, setSf] = useState(false);
-  const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const [displayIdx, setDisplayIdx] = useState<number | null>(null);
-  const [animKey, setAnimKey] = useState(0);
-  const prevIdxRef = useRef<number | null>(null);
-  const [loaded, setLoaded] = useState(false);
-  const [mobileCol, setMobileCol] = useState<1 | 2>(1);
-  const [col2Ready, setCol2Ready] = useState(false);
   const col2TimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [prevDisplayIdx, setPrevDisplayIdx] = useState<number | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [direction, setDirection] = useState(1);
   const [mobileView, setMobileView] = useState<'col1' | 'col2'>('col1');
@@ -81,7 +72,7 @@ export default function SchoolSideNav({
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  const activeIdx = hoveredIdx !== null ? hoveredIdx : selectedIdx;
+  const activeIdx = selectedIdx;
 
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -104,13 +95,7 @@ export default function SchoolSideNav({
 
   const handleMouseEnter = (idx: number) => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-
-    hoverTimeoutRef.current = setTimeout(() => {
-      if (activeIdx !== null) {
-        setDirection(idx > activeIdx ? 1 : -1);
-      }
-      setHoveredIdx(idx);
-    }, 80);
+    hoverTimeoutRef.current = setTimeout(() => setHoveredIdx(idx), 80);
   };
 
   const handleMouseLeave = () => {
@@ -374,14 +359,23 @@ export default function SchoolSideNav({
           >
             {navItems.map((item, idx) => {
               const isActive = activeIdx === idx;
-
+              const isHovered = hoveredIdx === idx && !isActive;
               return (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(idx)}
-                  onMouseEnter={() => handleMouseEnter(idx)}
-                  onMouseLeave={handleMouseLeave}
-                  onTouchStart={() => handleMouseEnter(idx)} // ✅ mobile hover simulation
+                  onMouseEnter={() => {
+                    hoverTimeoutRef.current = setTimeout(
+                      () => setHoveredIdx(idx),
+                      80
+                    );
+                  }}
+                  onMouseLeave={() => {
+                    if (hoverTimeoutRef.current)
+                      clearTimeout(hoverTimeoutRef.current);
+                    setHoveredIdx(null);
+                  }}
+                  // onTouchStart={() => handleMouseEnter(idx)} // ✅ mobile hover simulation
                   style={{
                     position: 'relative',
                     width: '100%',
@@ -419,20 +413,28 @@ export default function SchoolSideNav({
                       position: 'relative',
                       zIndex: 1,
                       display: 'inline-block',
-                      color: isActive ? '#e2c215' : '#fff',
+
+                      color: isActive
+                        ? '#e2c215'
+                        : isHovered
+                          ? '#e2c215'
+                          : '#fff',
+
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
+
                       transform: isActive
-                        ? 'translateX(10px)'
+                        ? 'translateX(28px)'
                         : 'translateX(0)',
+
                       transition:
-                        'transform 0.25s cubic-bezier(0.34,1.56,0.64,1), color 0.2s',
+                        'transform 0.25s cubic-bezier(0.34,1.56,0.64,1), color 0.15s ease',
                     }}
                   >
                     {item.label}
 
-                    {/* underline */}
+                    {/* underline ONLY active */}
                     <span
                       style={{
                         position: 'absolute',
@@ -449,36 +451,56 @@ export default function SchoolSideNav({
                   {/* =======================
           ARROW (YOUR SVG)
       ======================== */}
-                  <svg
-                    width="44"
-                    height="9"
-                    viewBox="0 0 44 9"
-                    fill="none"
-                    style={{
-                      flexShrink: 0,
-                      opacity: isActive ? 1 : 0.7,
-                      transition: 'opacity 0.2s',
-                    }}
-                  >
-                    {/* Shaft */}
-                    <line
-                      x1="0"
-                      y1="4.5"
-                      x2="38"
-                      y2="4.5"
-                      stroke={isActive ? '#e2c215' : '#fff'}
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    {/* Arrowhead */}
-                    <path
-                      d="M34 1l4 3.5L34 8"
-                      stroke={isActive ? '#e2c215' : '#fff'}
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <motion.svg width="24" height="24" viewBox="0 0 28 28">
+  {/* circle */}
+  <motion.circle
+    cx="14"
+    cy="14"
+    r="12"
+    animate={{
+      fill: selectedIdx === idx ? "#e2c215" : "#ffffff",
+    }}
+    transition={{ duration: 0.2 }}
+  />
+
+  {/* LINE 1 */}
+  <motion.line
+    x1="8.5"
+    y1="14"
+    x2="19.5"
+    y2="14"
+    stroke="#0b1b3b"
+    strokeWidth="2"
+    strokeLinecap="round"
+    animate={{
+      rotate: selectedIdx === idx ? 45 : 0,
+    }}
+    style={{
+      originX: "50%",
+      originY: "50%",
+    }}
+    transition={{ duration: 0.25 }}
+  />
+
+  {/* LINE 2 */}
+  <motion.line
+    x1="14"
+    y1="8.5"
+    x2="14"
+    y2="19.5"
+    stroke="#0b1b3b"
+    strokeWidth="2"
+    strokeLinecap="round"
+    animate={{
+      rotate: selectedIdx === idx ? 45 : 0,
+    }}
+    style={{
+      originX: "50%",
+      originY: "50%",
+    }}
+    transition={{ duration: 0.25 }}
+  />
+</motion.svg>
                 </button>
               );
             })}

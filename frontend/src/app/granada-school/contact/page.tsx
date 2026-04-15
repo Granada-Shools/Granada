@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useState, useEffect, useRef, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 
 /* -- NAV DATA ---------------------------------------------------------------- */
 import SchoolNavbar from '@/components/shared/SchoolNavbar';
@@ -468,18 +468,30 @@ const ENQUIRY_TYPES: { id: string; label: string; fields: FieldDef[] }[] = [
 
 /* -- HERO -------------------------------------------------------------------- */
 function Hero() {
+  const params = useParams();
+  const activeSection = params.section as string;
+
   const [loaded, setLoaded] = useState(false);
   useEffect(() => setLoaded(true), []);
   return (
     <section
       style={{
         position: 'relative',
-        minHeight: 'clamp(340px,50vh,480px)',
+        height: '100vh',
+        minHeight: 600,
         overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'flex-end',
       }}
     >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(95deg, rgba(13,12,13,0.85) 0%, rgba(13,12,13,0.38) 45%, transparent 100%)',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      />
       <div
         style={{
           position: 'absolute',
@@ -487,45 +499,28 @@ function Hero() {
           backgroundImage: 'url(/building.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          animation: 'kbCampus 14s ease-in-out infinite alternate',
         }}
       />
       <div
         style={{
           position: 'relative',
           zIndex: 5,
+          height: '100%',
           margin: '0 auto',
           padding: '0 clamp(1rem,2vw,2rem)',
           paddingTop: 'clamp(140px,16vw,165px)',
-          paddingBottom: 'clamp(2.5rem,5vw,4rem)',
-          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          paddingBottom: 'clamp(6rem,4vw,8rem)',
         }}
+        className="hero-inner"
       >
-        <h1
-          className="font-display"
-          style={{
-            fontSize: 'clamp(2.2rem,5.5vw,4.2rem)',
-            fontWeight: 600,
-            lineHeight: 1.05,
-            color: '#fff',
-            marginBottom: '0.5rem',
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(22px)',
-            transition: 'all 0.8s ease 0.4s',
-          }}
-        >
-          Contact{' '}
-          <span style={{ color: 'var(--accent-light)' }}>Granada School</span>
-        </h1>
-        <div
-          style={{
-            width: 'clamp(35px,4.5vw,50px)',
-            height: 2,
-            background: 'var(--secondary)',
-            opacity: loaded ? 1 : 0,
-            transition: 'opacity 0.7s ease 0.5s',
-          }}
-        />
+        <div style={{ flex: 1 }} />
+      
       </div>
+
+      <style>{`@keyframes kbCampus{0%{transform:scale(1)}100%{transform:scale(1.07)}}`}</style>
     </section>
   );
 }
@@ -1177,7 +1172,7 @@ export default function ContactPage() {
           { label: 'Contact us', href: '/granada-school/contact' },
         ]}
         enquireHref="/granada-school/contact"
-        applyHref="/granada-school/contact?type=admissions"
+        applyHref="/granada-school/admissions/apply"
         sideImage="/building.jpeg"
         sideImageAlt="Granada School"
       />

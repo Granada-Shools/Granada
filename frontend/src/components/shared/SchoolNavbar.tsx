@@ -171,7 +171,7 @@ export default function SchoolNavbar({
               aria-label="Open menu"
               style={{
                 background: 'none',
-                border: `1px solid ${scrolled ? 'rgba(33,53,88,0.35)' : 'rgba(255,255,255,0.6)'}`,
+                border: `2.5px solid ${scrolled ? 'rgba(33,53,88,0.55)' : 'rgba(255,255,255,0.9)'}`,
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
@@ -193,8 +193,8 @@ export default function SchoolNavbar({
             >
               <span
                 style={{
-                  width: 21,
-                  height: 1.5,
+                  width: 25,
+                  height: 2.2,
                   background: scrolled ? 'var(--primary)' : '#fff',
                   display: 'block',
                   transition: 'background 0.4s',
@@ -203,7 +203,7 @@ export default function SchoolNavbar({
               <span
                 style={{
                   width: 21,
-                  height: 1.5,
+                  height: 2.5,
                   background: scrolled ? 'var(--primary)' : '#fff',
                   display: 'block',
                   transition: 'background 0.4s',
@@ -211,8 +211,8 @@ export default function SchoolNavbar({
               />
               <span
                 style={{
-                  width: 13,
-                  height: 1.5,
+                  width: 17,
+                  height: 2.5,
                   background: scrolled
                     ? 'var(--secondary)'
                     : 'rgba(255,255,255,0.7)',

@@ -544,6 +544,16 @@ function PageHero() {
         style={{
           position: 'absolute',
           inset: 0,
+          background:
+            'linear-gradient(95deg, rgba(13,12,13,0.85) 0%, rgba(13,12,13,0.38) 45%, transparent 100%)',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
           backgroundImage: 'url(/class.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
@@ -2032,7 +2042,7 @@ function AdmissionsCTA() {
             }}
           >
             <a
-              href="/granada-school/contact?type=admissions"
+              href="/granada-school/admissions/apply"
               className="btn-green"
               style={{
                 fontSize: 'clamp(0.65rem,1vw,0.72rem)',
@@ -2068,7 +2078,7 @@ function AdmissionsCTA() {
               Book a Visit
             </a>
             <a
-              href="/granada-school#admissions"
+              href="/granada-school/contact?type=visit"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -2129,7 +2139,7 @@ export default function GranadaSchoolAcademics() {
           { label: 'Contact us', href: '/granada-school/contact' },
         ]}
         enquireHref="/granada-school/contact"
-        applyHref="/granada-school/contact?type=admissions"
+        applyHref="/granada-school/admissions/apply"
         sideImage="/building.jpeg"
         sideImageAlt="Granada School"
       />
